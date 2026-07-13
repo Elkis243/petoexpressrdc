@@ -4,14 +4,14 @@ vendor/
 
 # Environment
 .env
-.env.*
-!.env.example
 
 # Build
 dist/
 build/
 .next/
 out/
+staticfiles/
+media/
 
 # IDE
 .idea/
