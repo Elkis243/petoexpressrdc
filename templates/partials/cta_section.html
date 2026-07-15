@@ -1,0 +1,56 @@
+{% load static %}
+<section class="cta-section" id="devis" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <div class="row align-items-center g-4">
+          <div class="col-12 col-lg-5">
+            <div class="cta-section__media">
+              <img
+                src="{% static 'images/picture2.png' %}"
+                alt="Intervention de nettoyage professionnel Peto Express RDC"
+                class="cta-section__image img-fluid w-100"
+                width="800"
+                height="600"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-7">
+            <div class="cta-section__content">
+              <h2 class="cta-section__title" id="cta-heading">
+                Prêt pour un espace impeccable ?
+              </h2>
+              <p class="cta-section__text">
+                Contactez Peto Express RDC pour une estimation adaptée à vos locaux.
+                Réponse rapide, devis clair et sans engagement.
+              </p>
+              <ul class="cta-section__contacts list-unstyled">
+                <li>
+                  <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                  <span>22, Avenue Équateur, Q. Salongo, Commune de Kintambo, Kinshasa, RD Congo</span>
+                </li>
+                <li>
+                  <i class="bi bi-telephone" aria-hidden="true"></i>
+                  <div class="cta-section__contacts-body">
+                    <a href="tel:+243815009808">+243 815 009 808</a>
+                    <span class="cta-section__contacts-sep" aria-hidden="true">·</span>
+                    <a href="tel:+243972238520">+243 972 238 520</a>
+                  </div>
+                </li>
+                <li>
+                  <i class="bi bi-envelope" aria-hidden="true"></i>
+                  <a href="mailto:info@petoexpressrdc.com">info@petoexpressrdc.com</a>
+                </li>
+              </ul>
+              <a class="btn btn-cta-primary" href="{% url 'core:contact' %}">
+                Obtenir un devis gratuit
+                <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block meta_description %}
+Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, entretien et hygiène à Kinshasa et en RDC.
+{% endblock meta_description %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+<link href="{% static 'style/service.css' %}" rel="stylesheet" />
+<link href="{% static 'style/contact.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main class="contact-page">
+  <section
+    class="hero-section service-page-hero"
+    style="--hero-bg-image: url('{% static 'images/other-hero.png' %}');"
+    aria-labelledby="contact-page-title"
+  >
+    <div class="hero-section__bg" aria-hidden="true"></div>
+
+    <div class="container position-relative">
+      <div class="service-page-hero__content text-center">
+        <h1 class="service-page-hero__title" id="contact-page-title">Contact</h1>
+        <nav class="service-page-hero__breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}">Home</a>
+          <span class="service-page-hero__breadcrumb-sep" aria-hidden="true">/</span>
+          <span aria-current="page">Contact</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact-form" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row g-4 g-lg-5 align-items-start">
+            <div class="col-12 col-lg-6">
+              <h2 class="contact-section__title" id="contact-heading">
+                Avez-vous une
+                <span class="contact-section__accent">question&nbsp;?</span>
+              </h2>
+              <p class="contact-section__text">
+                Notre équipe reste disponible pour répondre à vos demandes et assurer
+                l'entretien professionnel de vos locaux à Kinshasa et partout en RDC.
+              </p>
+              <ul class="cta-section__contacts list-unstyled mb-0">
+                <li>
+                  <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                  <span>22, Avenue Équateur, Q. Salongo, Commune de Kintambo, Kinshasa, RD Congo</span>
+                </li>
+                <li>
+                  <i class="bi bi-telephone" aria-hidden="true"></i>
+                  <div class="cta-section__contacts-body">
+                    <a href="tel:+243815009808">+243 815 009 808</a>
+                    <span class="cta-section__contacts-sep" aria-hidden="true">·</span>
+                    <a href="tel:+243972238520">+243 972 238 520</a>
+                  </div>
+                </li>
+                <li>
+                  <i class="bi bi-envelope" aria-hidden="true"></i>
+                  <a href="mailto:info@petoexpressrdc.com">info@petoexpressrdc.com</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <div class="contact-form-card">
+                <form class="contact-form" action="{% url 'core:contact' %}" method="post" novalidate>
+                  {% csrf_token %}
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="contact-name">Nom</label>
+                      <input
+                        class="form-control contact-form__input"
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        placeholder="Votre nom complet"
+                        autocomplete="name"
+                        required
+                      />
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="contact-phone">Téléphone</label>
+                      <input
+                        class="form-control contact-form__input"
+                        type="tel"
+                        id="contact-phone"
+                        name="phone"
+                        placeholder="Votre numéro de téléphone"
+                        autocomplete="tel"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-email">Adresse e-mail</label>
+                    <input
+                      class="form-control contact-form__input"
+                      type="email"
+                      id="contact-email"
+                      name="email"
+                      placeholder="Votre adresse e-mail"
+                      autocomplete="email"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-company">Société / Organisation</label>
+                    <input
+                      class="form-control contact-form__input"
+                      type="text"
+                      id="contact-company"
+                      name="company"
+                      placeholder="Société / Organisation"
+                      autocomplete="organization"
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-subject">Sujet de la demande</label>
+                    <input
+                      class="form-control contact-form__input"
+                      type="text"
+                      id="contact-subject"
+                      name="subject"
+                      placeholder="Sujet de la demande"
+                      required
+                    />
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-message">Message</label>
+                    <textarea
+                      class="form-control contact-form__input contact-form__textarea"
+                      id="contact-message"
+                      name="message"
+                      rows="4"
+                      placeholder="Écrivez quelque chose..."
+                      required
+                    ></textarea>
+                  </div>
+                  <button class="btn btn-contact-submit w-100" type="submit">
+                    Envoyer le message
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock base %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const offcanvasElement = document.getElementById("siteNavbar");
+
+    if (offcanvasElement && window.bootstrap) {
+      try {
+        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement);
+        const mobileMediaQuery = window.matchMedia("(max-width: 991.98px)");
+
+        offcanvasElement.addEventListener("click", function (event) {
+          if (!mobileMediaQuery.matches) {
+            return;
+          }
+
+          const navigableLink = event.target.closest("a.nav-link, a.btn, a.dropdown-item");
+          if (!navigableLink) {
+            return;
+          }
+
+          if (navigableLink.classList.contains("dropdown-toggle")) {
+            return;
+          }
+
+          const href = navigableLink.getAttribute("href");
+          if (href && href !== "#") {
+            bsOffcanvas.hide();
+          }
+        });
+      } catch (error) {
+        console.warn("Navbar offcanvas unavailable:", error);
+      }
+    }
+  });
+</script>
+{% endblock extra_js %}

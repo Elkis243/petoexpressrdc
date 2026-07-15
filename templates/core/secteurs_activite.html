@@ -1,0 +1,143 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Nos secteurs d'activité{% endblock %}
+
+{% block meta_description %}
+Découvrez les secteurs d'activité accompagnés par Peto Express RDC en housekeeping et entretien professionnel.
+{% endblock meta_description %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+<link href="{% static 'style/service.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main>
+  <section
+    class="hero-section service-page-hero"
+    style="--hero-bg-image: url('{% static 'images/other-hero.png' %}');"
+    aria-labelledby="secteurs-page-title"
+  >
+    <div class="hero-section__bg" aria-hidden="true"></div>
+
+    <div class="container position-relative">
+      <div class="service-page-hero__content text-center">
+        <h1 class="service-page-hero__title" id="secteurs-page-title">
+          Nos secteurs d'activité
+        </h1>
+        <nav class="service-page-hero__breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}">Home</a>
+          <span class="service-page-hero__breadcrumb-sep" aria-hidden="true">/</span>
+          <span aria-current="page">Nos secteurs d'activité</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="secteurs-section" id="secteurs" aria-labelledby="secteurs-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="secteurs-section__intro text-center">
+            <h2 class="secteurs-section__title" id="secteurs-heading">
+              Des solutions adaptées à chaque environnement
+            </h2>
+            <p class="secteurs-section__text">
+              Peto Express RDC intervient auprès d'acteurs variés, avec des protocoles
+              ajustés à leurs contraintes et à leurs standards d'hygiène.
+            </p>
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 g-lg-4">
+            <div class="col">
+              <article class="secteur-item h-100">
+                <span class="secteur-item__index" aria-hidden="true">01</span>
+                <h3 class="secteur-item__title">Entreprises</h3>
+                <p class="secteur-item__text">
+                  Nous accompagnons les entreprises dans l'entretien quotidien de
+                  leurs espaces de travail.
+                </p>
+              </article>
+            </div>
+
+            <div class="col">
+              <article class="secteur-item h-100">
+                <span class="secteur-item__index" aria-hidden="true">02</span>
+                <h3 class="secteur-item__title">Industriels</h3>
+                <p class="secteur-item__text">
+                  Nous intervenons dans les environnements industriels nécessitant
+                  des techniques spécifiques et un haut niveau de sécurité.
+                </p>
+              </article>
+            </div>
+
+            <div class="col">
+              <article class="secteur-item h-100">
+                <span class="secteur-item__index" aria-hidden="true">03</span>
+                <h3 class="secteur-item__title">Institutions publiques</h3>
+                <p class="secteur-item__text">
+                  Nous collaborons avec les institutions publiques pour maintenir
+                  des espaces accueillants et conformes aux normes d'hygiène.
+                </p>
+              </article>
+            </div>
+
+            <div class="col">
+              <article class="secteur-item h-100">
+                <span class="secteur-item__index" aria-hidden="true">04</span>
+                <h3 class="secteur-item__title">Résidences privées</h3>
+                <p class="secteur-item__text">
+                  Nous proposons des services de nettoyage pour les particuliers
+                  et résidences privées.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% include "partials/cta_section.html" %}
+</main>
+{% endblock base %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const offcanvasElement = document.getElementById("siteNavbar");
+
+    if (offcanvasElement && window.bootstrap) {
+      try {
+        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement);
+        const mobileMediaQuery = window.matchMedia("(max-width: 991.98px)");
+
+        offcanvasElement.addEventListener("click", function (event) {
+          if (!mobileMediaQuery.matches) {
+            return;
+          }
+
+          const navigableLink = event.target.closest("a.nav-link, a.btn, a.dropdown-item");
+          if (!navigableLink) {
+            return;
+          }
+
+          if (navigableLink.classList.contains("dropdown-toggle")) {
+            return;
+          }
+
+          const href = navigableLink.getAttribute("href");
+          if (href && href !== "#") {
+            bsOffcanvas.hide();
+          }
+        });
+      } catch (error) {
+        console.warn("Navbar offcanvas unavailable:", error);
+      }
+    }
+  });
+</script>
+{% endblock extra_js %}

@@ -60,8 +60,8 @@
     <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}" />
 
     <!-- Theme Colors -->
-    <meta name="theme-color" content="#1a6b3c" />
-    <meta name="msapplication-TileColor" content="#1a6b3c" />
+    <meta name="theme-color" content="#034169" />
+    <meta name="msapplication-TileColor" content="#034169" />
     <meta name="msapplication-TileImage" content="https://{{ request.get_host }}{% static 'images/social_network_logo.png' %}" />
 
     <!-- Additional SEO -->
@@ -81,12 +81,14 @@
 
     <!-- Base CSS -->
     <link href="{% static 'style/index.css' %}" rel="stylesheet" />
+    <link href="{% static 'style/footer.css' %}" rel="stylesheet" />
 
     {% block extra_css %}{% endblock extra_css %}
   </head>
 
   <body class="{% block body_class %}{% endblock body_class %}">
     {% block base %}{% endblock base %}
+    {% include "partials/footer.html" %}
 
     <!-- Bootstrap JS -->
     <script
@@ -94,7 +96,38 @@
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
     ></script>
-    <script src="{% static 'js/validate_form.js' %}"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggle = document.getElementById("navbarServicesDropdown");
+        if (!toggle || !window.bootstrap) {
+          return;
+        }
+
+        const desktopMedia = window.matchMedia("(min-width: 992px)");
+        let dropdownInstance = null;
+
+        function applyServicesDropdownMode() {
+          if (desktopMedia.matches) {
+            if (dropdownInstance) {
+              dropdownInstance.dispose();
+              dropdownInstance = null;
+            }
+            toggle.removeAttribute("data-bs-toggle");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.closest(".site-navbar__dropdown")?.classList.remove("show");
+            return;
+          }
+
+          toggle.setAttribute("data-bs-toggle", "dropdown");
+          dropdownInstance = bootstrap.Dropdown.getOrCreateInstance(toggle, {
+            autoClose: "outside",
+          });
+        }
+
+        applyServicesDropdownMode();
+        desktopMedia.addEventListener("change", applyServicesDropdownMode);
+      });
+    </script>
     {% block extra_js %}{% endblock extra_js %}
   </body>
 </html>

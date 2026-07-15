@@ -1,0 +1,106 @@
+/* Contact body */
+.contact-section {
+  background: #f4f6f8;
+  padding-block: clamp(3.5rem, 8vw, 5.5rem);
+  scroll-margin-top: 1.5rem;
+}
+
+.contact-section__title {
+  margin: 0 0 1rem;
+  max-width: 14ch;
+  color: var(--color-navy, #034169);
+  font-size: clamp(1.85rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+.contact-section__accent {
+  position: relative;
+  display: inline-block;
+  color: var(--color-green, #3dc978);
+}
+
+.contact-section__accent::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.08em;
+  height: 0.28em;
+  background: rgba(var(--color-green-rgb, 61, 201, 120), 0.28);
+  border-radius: 999px;
+  z-index: -1;
+}
+
+.contact-section__text {
+  margin: 0 0 1.35rem;
+  max-width: 34rem;
+  color: var(--color-gray-600, #5c6670);
+  line-height: 1.65;
+}
+
+.contact-form-card {
+  padding: 1.35rem 1.25rem;
+  background: var(--color-white, #fff);
+  border-radius: 1.25rem;
+  box-shadow: 0 14px 36px rgba(var(--color-navy-rgb, 3, 65, 105), 0.08);
+  border: none;
+}
+
+.contact-form .form-control,
+.contact-form .form-label,
+.contact-form .btn {
+  font-size: inherit;
+}
+
+.contact-form__input {
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  border: none;
+  background: #eff1f3;
+  color: var(--color-navy, #034169);
+  font-size: inherit;
+  font-weight: 400;
+  line-height: 1.45;
+  box-shadow: none;
+}
+
+.contact-form__input::placeholder {
+  color: #9aa3ad;
+  font-size: inherit;
+  font-weight: 400;
+  opacity: 1;
+}
+
+.contact-form__input:focus {
+  border: none;
+  background: #e8ebef;
+  box-shadow: 0 0 0 0.15rem rgba(var(--color-green-rgb, 61, 201, 120), 0.22);
+}
+
+.contact-form__textarea {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.btn-contact-submit {
+  --bs-btn-color: var(--color-white, #fff);
+  --bs-btn-bg: var(--color-navy, #034169);
+  --bs-btn-border-color: var(--color-navy, #034169);
+  --bs-btn-hover-color: var(--color-white, #fff);
+  --bs-btn-hover-bg: var(--color-navy-dark, #023454);
+  --bs-btn-hover-border-color: var(--color-navy-dark, #023454);
+  --bs-btn-focus-shadow-rgb: 3, 65, 105;
+  --bs-btn-font-size: inherit;
+  font-weight: 600;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(var(--color-navy-rgb, 3, 65, 105), 0.25);
+}
+
+@media (max-width: 991.98px) {
+  .contact-section__title {
+    max-width: none;
+  }
+}
