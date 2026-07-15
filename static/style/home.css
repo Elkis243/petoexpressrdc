@@ -454,6 +454,7 @@ main {
   min-height: 0;
   max-height: 28rem;
   object-fit: cover;
+  object-position: center top;
   aspect-ratio: 4 / 3;
 }
 
@@ -792,16 +793,19 @@ main {
 
 .cta-section__contacts li {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: flex-start;
   gap: 0.55rem;
   line-height: 1.4;
+  min-width: 0;
 }
 
 .cta-section__contacts i {
   color: var(--color-green);
-  flex-shrink: 0;
+  flex: 0 0 auto;
+  width: 1.1em;
   margin-top: 0.15em;
+  line-height: 1.4;
 }
 
 .cta-section__contacts-body {
@@ -809,7 +813,7 @@ main {
   flex: 1 1 auto;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: baseline;
   gap: 0.35rem 0.55rem;
 }
 
@@ -817,7 +821,7 @@ main {
 .cta-section__contacts li > span,
 .cta-section__contacts li > a {
   min-width: 0;
-  flex: 1 1 auto;
+  flex: 1 1 0;
   overflow-wrap: anywhere;
   word-break: break-word;
 }
@@ -881,7 +885,7 @@ main {
   }
 
   .about-section__image {
-    max-height: 18rem;
+    max-height: 20rem;
   }
 
   .cta-section__image {
@@ -907,7 +911,10 @@ main {
     margin-bottom: 1.5rem;
   }
 
-  .about-section__image,
+  .about-section__image {
+    max-height: 16rem;
+  }
+
   .cta-section__image {
     max-height: 12.5rem;
   }
