@@ -1,33 +1,33 @@
-"""
-Production settings.
-"""
-
 import os
+from .base import *
 
-from .base import *  # noqa: F403
-
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.environ.get(
-        'ALLOWED_HOSTS',
-        'www.petoexpressrdc.com,petoexpressrdc.com',
-    ).split(',')
-    if host.strip()
+    "petoexpressrdc-production.up.railway.app",
+    "petoexpressrdc.com",
+    "www.petoexpressrdc.com",
 ]
 
-# Domaine canonique du sitemap / robots (avec www).
-SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'www.petoexpressrdc.com')
-SITE_NAME = os.environ.get('SITE_NAME', 'Peto Express SARL')
+SECURE_HSTS_SECONDS = int(os.getenv('SECURE_HSTS_SECONDS', '31536000'))
+SECURE_HSTS_INCLUDE_SUBDOMAINS = (os.getenv('SECURE_HSTS_INCLUDE_SUBDOMAINS', 'True') == 'True')
+SECURE_HSTS_PRELOAD = os.getenv('SECURE_HSTS_PRELOAD', 'True') == 'True'
+SECURE_SSL_REDIRECT = os.getenv('SECURE_SSL_REDIRECT', 'True') == 'True'
+
+SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'True') == 'True'
+CSRF_COOKIE_SECURE = os.getenv('CSRF_COOKIE_SECURE', 'True') == 'True'
 
 CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get(
-        'CSRF_TRUSTED_ORIGINS',
-        'https://www.petoexpressrdc.com,https://petoexpressrdc.com',
-    ).split(',')
-    if origin.strip()
+    "https://*.up.railway.app",
+    "https://petoexpressrdc.com",
+    "https://www.petoexpressrdc.com",
 ]
+
+X_FRAME_OPTIONS = os.getenv('X_FRAME_OPTIONS', 'DENY')
+SECURE_BROWSER_XSS_FILTER = (
+    os.getenv('SECURE_BROWSER_XSS_FILTER', 'True') == 'True'
+)
+SECURE_CONTENT_TYPE_NOSNIFF = (
+    os.getenv('SECURE_CONTENT_TYPE_NOSNIFF', 'True') == 'True'
+)
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

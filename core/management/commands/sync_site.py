@@ -11,7 +11,7 @@ from core.site_utils import sync_site_domain
 
 
 class Command(BaseCommand):
-    help = "Synchronise django.contrib.sites avec SITE_DOMAIN / SITE_NAME."
+    help = "Synchronise django.contrib.sites (domaine local ou www.petoexpressrdc.com)."
 
     def handle(self, *args, **options):
         sync_site_domain()

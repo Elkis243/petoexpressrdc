@@ -1,8 +1,5 @@
 """
 Alignement SEO du domaine django.contrib.sites (sitemap canonique).
-
-Après migrate, ou via la commande « sync_site », le Site (SITE_ID) prend
-SITE_DOMAIN / SITE_NAME définis dans les settings / variables d'environnement.
 """
 
 from django.conf import settings
@@ -14,11 +11,14 @@ def sync_site_domain(**kwargs):
     try:
         from django.contrib.sites.models import Site
 
+        domain = (
+            "localhost:8000" if settings.DEBUG else "www.petoexpressrdc.com"
+        )
         Site.objects.update_or_create(
             pk=settings.SITE_ID,
             defaults={
-                "domain": settings.SITE_DOMAIN,
-                "name": settings.SITE_NAME,
+                "domain": domain,
+                "name": "Peto Express SARL",
             },
         )
     except (OperationalError, ProgrammingError, ImportError):

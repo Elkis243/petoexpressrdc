@@ -29,7 +29,7 @@ def send_contact_email(cleaned_data: dict) -> bool:
     context = {
         **cleaned_data,
         "sent_at": sent_at,
-        "site_name": getattr(settings, "SITE_NAME", "Peto Express SARL"),
+        "site_name": "Peto Express SARL",
     }
 
     subject = f"[Contact] {_safe_subject(cleaned_data.get('subject', 'Nouvelle demande'))}"

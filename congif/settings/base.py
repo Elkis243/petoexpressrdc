@@ -11,6 +11,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 load_dotenv(BASE_DIR / '.env')
 
+# SECURITY WARNING: don't run with debug turned on in production!
+# Controlled exclusively by DJANGO_DEBUG in the environment / .env
+# Local: DJANGO_DEBUG=True | Production (Railway): DJANGO_DEBUG=False
+DEBUG = str(os.getenv('DJANGO_DEBUG', 'False')).strip().lower() in {
+    '1',
+    'true',
+    'yes',
+    'on',
+}
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -24,10 +34,6 @@ INSTALLED_APPS = [
 ]
 
 SITE_ID = 1
-# Domaine Sites (sitemap). En local : localhost:8000.
-# En production : www.petoexpressrdc.com (voir congif.settings.production).
-SITE_DOMAIN = os.getenv('SITE_DOMAIN', 'localhost:8000')
-SITE_NAME = os.getenv('SITE_NAME', 'Peto Express SARL')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -88,8 +94,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'fr'
 
-
-
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
@@ -103,9 +107,6 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# ---------------------------------------------------------------------------
-# E-mail (SMTP Hostinger — valeurs via .env uniquement)
-# ---------------------------------------------------------------------------
 EMAIL_BACKEND = os.getenv(
     'EMAIL_BACKEND',
     'django.core.mail.backends.smtp.EmailBackend',
@@ -118,7 +119,6 @@ EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
 DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', EMAIL_HOST_USER or 'noreply@localhost')
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
-# Destinataire des messages du formulaire de contact
 CONTACT_EMAIL_TO = os.getenv('CONTACT_EMAIL_TO', EMAIL_HOST_USER or DEFAULT_FROM_EMAIL)
 
 LOGGING = {
