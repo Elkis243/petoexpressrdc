@@ -79,6 +79,19 @@
   box-shadow: 0 0 0 0.15rem rgba(var(--color-green-rgb, 61, 201, 120), 0.22);
 }
 
+.contact-form.was-validated .contact-form__input:invalid {
+  background: #fff5f5;
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.22);
+}
+
+.contact-form.was-validated .contact-form__input:valid {
+  box-shadow: 0 0 0 0.12rem rgba(var(--color-green-rgb, 61, 201, 120), 0.28);
+}
+
+.contact-form .invalid-feedback {
+  font-size: 0.85em;
+}
+
 .contact-form__textarea {
   min-height: 7rem;
   resize: vertical;

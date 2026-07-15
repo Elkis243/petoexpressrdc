@@ -72,7 +72,7 @@ Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, ent
 
             <div class="col-12 col-lg-6">
               <div class="contact-form-card">
-                <form class="contact-form" action="{% url 'core:contact' %}" method="post" novalidate>
+                <form class="contact-form needs-validation" action="{% url 'core:contact' %}" method="post" novalidate>
                   {% csrf_token %}
                   <div class="row g-3 mb-3">
                     <div class="col-12 col-sm-6">
@@ -85,7 +85,9 @@ Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, ent
                         placeholder="Votre nom complet"
                         autocomplete="name"
                         required
+                        data-msg-required="Veuillez indiquer votre nom."
                       />
+                      <div class="invalid-feedback">Veuillez indiquer votre nom.</div>
                     </div>
                     <div class="col-12 col-sm-6">
                       <label class="visually-hidden" for="contact-phone">Téléphone</label>
@@ -97,7 +99,9 @@ Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, ent
                         placeholder="Votre numéro de téléphone"
                         autocomplete="tel"
                         required
+                        data-msg-required="Veuillez indiquer votre numéro de téléphone."
                       />
+                      <div class="invalid-feedback">Veuillez indiquer votre numéro de téléphone.</div>
                     </div>
                   </div>
                   <div class="mb-3">
@@ -110,7 +114,9 @@ Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, ent
                       placeholder="Votre adresse e-mail"
                       autocomplete="email"
                       required
+                      data-msg-required="Veuillez indiquer votre adresse e-mail."
                     />
+                    <div class="invalid-feedback">Veuillez indiquer une adresse e-mail valide.</div>
                   </div>
                   <div class="mb-3">
                     <label class="visually-hidden" for="contact-company">Société / Organisation</label>
@@ -132,7 +138,9 @@ Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, ent
                       name="subject"
                       placeholder="Sujet de la demande"
                       required
+                      data-msg-required="Veuillez indiquer le sujet de votre demande."
                     />
+                    <div class="invalid-feedback">Veuillez indiquer le sujet de votre demande.</div>
                   </div>
                   <div class="mb-3">
                     <label class="visually-hidden" for="contact-message">Message</label>
@@ -143,7 +151,9 @@ Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, ent
                       rows="4"
                       placeholder="Écrivez quelque chose..."
                       required
+                      data-msg-required="Veuillez écrire votre message."
                     ></textarea>
+                    <div class="invalid-feedback">Veuillez écrire votre message.</div>
                   </div>
                   <button class="btn btn-contact-submit w-100" type="submit">
                     Envoyer le message
@@ -160,6 +170,7 @@ Contactez Peto Express RDC pour un devis gratuit de nettoyage professionnel, ent
 {% endblock base %}
 
 {% block extra_js %}
+<script src="{% static 'js/validate_form.js' %}"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const offcanvasElement = document.getElementById("siteNavbar");
