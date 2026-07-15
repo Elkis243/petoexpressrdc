@@ -49,15 +49,12 @@ def send_contact_email(cleaned_data: dict) -> bool:
         )
         message.attach_alternative(html_body, "text/html")
         message.send(fail_silently=False)
-    except SMTPException:
+    except (SMTPException, TimeoutError, OSError) as exc:
         logger.exception(
-            "Échec SMTP lors de l'envoi du formulaire de contact (destinataire=%s).",
+            "Échec SMTP lors de l'envoi du formulaire de contact "
+            "(destinataire=%s, erreur=%s).",
             recipient,
-        )
-        return False
-    except OSError:
-        logger.exception(
-            "Serveur SMTP inaccessible lors de l'envoi du formulaire de contact."
+            type(exc).__name__,
         )
         return False
     except Exception:
