@@ -4,17 +4,21 @@
 {% block title %}Home{% endblock %}
 
 {% block meta_description %}
-Peto Express RDC propose des services professionnels de housekeeping et de nettoyage industriel pour entreprises, industries et institutions à Kinshasa et en RDC.
+Peto Express SARL propose des services professionnels de housekeeping et de nettoyage industriel pour entreprises, industries et institutions à Kinshasa et en RDC.
 {% endblock meta_description %}
 
 {% block extra_css %}
 <link href="{% static 'style/home.css' %}" rel="stylesheet" />
 {% endblock extra_css %}
 
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
 {% block base %}
 {% include "partials/navbar.html" %}
 
-<main>
+<main id="main-content">
   <section class="hero-section" style="--hero-bg-image: url('{% static 'images/hero.png' %}');">
     <div class="hero-section__bg" aria-hidden="true"></div>
 
@@ -26,7 +30,7 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
           </h1>
 
           <p class="hero-text">
-            Peto Express RDC déploie des équipes formées et des protocoles rigoureux
+            Peto Express SARL déploie des équipes formées et des protocoles rigoureux
             pour l'entretien de bureaux, sites industriels, hôtels et institutions
             à Kinshasa et dans toute la République Démocratique du Congo.
           </p>
@@ -50,8 +54,8 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
             <div class="col-12 col-lg-6 about-reveal">
               <div class="about-section__media">
                 <img
-                  src="{% static 'images/home/about.jpg' %}"
-                  alt="Équipe Peto Express RDC en intervention de nettoyage professionnel"
+                  src="{% static 'images/picture1.webp' %}"
+                  alt="Équipe Peto Express SARL en intervention de nettoyage professionnel"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"
@@ -65,7 +69,7 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
                 Votre partenaire de confiance pour tous vos besoins en nettoyage professionnel
               </h2>
               <p class="about-section__text">
-                Peto Express RDC, entreprise congolaise spécialisée en housekeeping et
+                Peto Express SARL, entreprise congolaise spécialisée en housekeeping et
                 nettoyage industriel, accompagne entreprises, institutions et hôtels
                 avec des solutions d'entretien adaptées à leurs besoins.
               </p>
@@ -227,11 +231,11 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
       <div class="row justify-content-center">
         <div class="col-12 col-lg-10">
           <div class="row align-items-center g-4">
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-5 d-none d-lg-block">
               <div class="cta-section__media">
                 <img
                   src="{% static 'images/picture2.png' %}"
-                  alt="Intervention de nettoyage professionnel Peto Express RDC"
+                  alt="Intervention de nettoyage professionnel Peto Express SARL"
                   class="cta-section__image img-fluid w-100"
                   width="800"
                   height="600"
@@ -245,7 +249,7 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
                   Prêt pour un espace impeccable ?
                 </h2>
                 <p class="cta-section__text">
-                  Contactez Peto Express RDC pour une estimation adaptée à vos locaux.
+                  Contactez Peto Express SARL pour une estimation adaptée à vos locaux.
                   Réponse rapide, devis clair et sans engagement.
                 </p>
                 <ul class="cta-section__contacts list-unstyled">

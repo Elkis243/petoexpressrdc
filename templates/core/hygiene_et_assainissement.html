@@ -8,10 +8,14 @@
 <link href="{% static 'style/service.css' %}" rel="stylesheet" />
 {% endblock extra_css %}
 
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
 {% block base %}
 {% include "partials/navbar.html" %}
 
-<main>
+<main id="main-content">
   {% include "partials/service_hero.html" with service_title="Hygiène et assainissement" %}
 
   <section class="about-section" id="desinfection" aria-labelledby="desinfection-heading">
@@ -23,7 +27,7 @@
               <div class="about-section__media">
                 <img
                   src="{% static 'images/home/about.jpg' %}"
-                  alt="Désinfection professionnelle par Peto Express RDC"
+                  alt="Désinfection professionnelle par Peto Express SARL"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"
@@ -97,7 +101,7 @@
               <div class="about-section__media">
                 <img
                   src="{% static 'images/home/about.jpg' %}"
-                  alt="Désinsectisation par Peto Express RDC"
+                  alt="Désinsectisation par Peto Express SARL"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"
@@ -120,7 +124,7 @@
               <div class="about-section__media">
                 <img
                   src="{% static 'images/home/about.jpg' %}"
-                  alt="Dératisation par Peto Express RDC"
+                  alt="Dératisation par Peto Express SARL"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"

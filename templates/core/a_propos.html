@@ -4,7 +4,7 @@
 {% block title %}À propos{% endblock %}
 
 {% block meta_description %}
-Découvrez Peto Express RDC, entreprise spécialisée en housekeeping et nettoyage industriel en République Démocratique du Congo.
+Découvrez Peto Express SARL, entreprise spécialisée en housekeeping et nettoyage industriel en République Démocratique du Congo.
 {% endblock meta_description %}
 
 {% block extra_css %}
@@ -12,10 +12,14 @@ Découvrez Peto Express RDC, entreprise spécialisée en housekeeping et nettoya
 <link href="{% static 'style/service.css' %}" rel="stylesheet" />
 {% endblock extra_css %}
 
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
 {% block base %}
 {% include "partials/navbar.html" %}
 
-<main>
+<main id="main-content">
   <section
     class="hero-section service-page-hero"
     style="--hero-bg-image: url('{% static 'images/other-hero.png' %}');"
@@ -43,8 +47,8 @@ Découvrez Peto Express RDC, entreprise spécialisée en housekeeping et nettoya
             <div class="col-12 col-lg-6">
               <div class="about-section__media">
                 <img
-                  src="{% static 'images/home/about.jpg' %}"
-                  alt="Équipe Peto Express RDC"
+                  src="{% static 'images/picture1.webp' %}"
+                  alt="Équipe Peto Express SARL"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"

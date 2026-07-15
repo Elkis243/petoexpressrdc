@@ -8,10 +8,14 @@
 <link href="{% static 'style/service.css' %}" rel="stylesheet" />
 {% endblock extra_css %}
 
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
 {% block base %}
 {% include "partials/navbar.html" %}
 
-<main>
+<main id="main-content">
   {% include "partials/service_hero.html" with service_title="Nettoyage professionnel" %}
 
   <section class="about-section" id="nettoyage-bureaux" aria-labelledby="nettoyage-bureaux-heading">
@@ -23,7 +27,7 @@
               <div class="about-section__media">
                 <img
                   src="{% static 'images/home/about.jpg' %}"
-                  alt="Nettoyage professionnel de bureaux par Peto Express RDC"
+                  alt="Nettoyage professionnel de bureaux par Peto Express SARL"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"
@@ -121,7 +125,7 @@
               <div class="about-section__media">
                 <img
                   src="{% static 'images/home/about.jpg' %}"
-                  alt="Nettoyage industriel par Peto Express RDC"
+                  alt="Nettoyage industriel par Peto Express SARL"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"
@@ -144,7 +148,7 @@
               <div class="about-section__media">
                 <img
                   src="{% static 'images/home/about.jpg' %}"
-                  alt="Nettoyage après travaux par Peto Express RDC"
+                  alt="Nettoyage après travaux par Peto Express SARL"
                   class="about-section__image img-fluid w-100"
                   width="1200"
                   height="800"

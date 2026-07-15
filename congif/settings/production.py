@@ -21,7 +21,7 @@ ALLOWED_HOSTS = [
 
 # Domaine canonique du sitemap / robots (avec www).
 SITE_DOMAIN = os.environ.get('SITE_DOMAIN', 'www.petoexpressrdc.com')
-SITE_NAME = os.environ.get('SITE_NAME', 'Peto Express RDC')
+SITE_NAME = os.environ.get('SITE_NAME', 'Peto Express SARL')
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip()

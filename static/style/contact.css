@@ -112,6 +112,43 @@
   box-shadow: 0 10px 22px rgba(var(--color-navy-rgb, 3, 65, 105), 0.25);
 }
 
+.btn-contact-submit:disabled {
+  opacity: 0.85;
+  cursor: wait;
+}
+
+.contact-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  font-size: 0.95em;
+  line-height: 1.45;
+}
+
+.contact-alert i {
+  flex-shrink: 0;
+  margin-top: 0.1em;
+  font-size: 1.1em;
+}
+
+.contact-alert--success {
+  color: #0f5132;
+  background: #d1e7dd;
+}
+
+.contact-alert--error {
+  color: #842029;
+  background: #f8d7da;
+}
+
+.contact-alert--info,
+.contact-alert--warning {
+  color: #034169;
+  background: #e8eef3;
+}
+
 @media (max-width: 991.98px) {
   .contact-section__title {
     max-width: none;

@@ -91,12 +91,13 @@
       }
     }
 
-    /* --- Champs texte / textarea : trim + longueur minimale --- */
+    /* --- Champs texte / textarea / téléphone : trim + longueur minimale --- */
     var isTextInput = field.tagName === "INPUT" && field.type === "text";
+    var isTel = field.type === "tel";
     var isTextarea = field.tagName === "TEXTAREA";
     var isEmail = field.type === "email";
 
-    if (isTextInput || isTextarea || isEmail) {
+    if (isTextInput || isTextarea || isEmail || isTel) {
       var trimmed = field.value.trim();
 
       if (field.required && trimmed === "") {
@@ -167,7 +168,9 @@
       if (
         field.tagName === "TEXTAREA" ||
         (field.tagName === "INPUT" &&
-          (field.type === "text" || field.type === "email"))
+          (field.type === "text" ||
+            field.type === "email" ||
+            field.type === "tel"))
       ) {
         field.value = field.value.trim();
       }

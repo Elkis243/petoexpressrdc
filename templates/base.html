@@ -1,57 +1,86 @@
 {% load static %}
 <!doctype html>
-<html lang="{{ LANGUAGE_CODE|default:'fr' }}">
+{# SEO base — JSON-LD, canonical HTTPS, preloads LCP, OG/Twitter. Blocs Django conservés. #}
+<html lang="{{ SEO_LANG|default:'fr' }}" dir="ltr">
   <head>
     {% block gtag %}
     {% endblock gtag %}
 
-    <!-- Encodage & responsive -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+    <meta http-equiv="Content-Language" content="{{ SEO_LANG|default:'fr' }}" />
+    <meta name="color-scheme" content="light" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=yes, email=yes, address=yes" />
 
-    <!-- Titre de la page -->
-    <title>{% block title %}{{ page|default:'Peto Express RDC' }} - Housekeeping et nettoyage industriel en RDC{% endblock title %}</title>
+    <title>{% block title %}{{ page|default:'Peto Express SARL' }} - Housekeeping et nettoyage industriel en RDC{% endblock title %}</title>
 
-    <!-- SEO : Meta Description & Keywords -->
     <meta
       name="description"
-      content="{% block meta_description %}Peto Express RDC, entreprise congolaise spécialisée en housekeeping, nettoyage industriel et entretien d'espaces professionnels. Solutions fiables et durables en République Démocratique du Congo.{% endblock meta_description %}"
+      content="{% block meta_description %}Peto Express SARL, entreprise congolaise spécialisée en housekeeping, nettoyage industriel et entretien d'espaces professionnels. Solutions fiables et durables en République Démocratique du Congo.{% endblock meta_description %}"
     />
     <meta
       name="keywords"
       content="Peto Express, housekeeping, nettoyage industriel, entretien, hygiène, nettoyage professionnel, bureaux, usines, entrepôts, hôtels, RDC, République Démocratique du Congo, Kinshasa, services de nettoyage, maintenance des locaux"
     />
-    <meta name="author" content="Peto Express RDC" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow" />
-    <meta name="google-site-verification" content="" />
-    <link rel="canonical" href="https://{{ request.get_host }}{{ request.path }}" />
+    <meta name="author" content="Peto Express SARL" />
+    <meta name="creator" content="Peto Express SARL" />
+    <meta name="publisher" content="Peto Express SARL" />
+    <meta name="copyright" content="Peto Express SARL" />
 
-    <!-- Open Graph pour les réseaux sociaux -->
-    <meta property="og:title" content="{{ page|default:'Peto Express RDC' }} - Housekeeping & nettoyage industriel en RDC" />
+    {# Meta robots — directives Google modernes #}
+    <meta
+      name="robots"
+      content="{% block meta_robots %}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{% endblock meta_robots %}"
+    />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="google-site-verification" content="{% block google_site_verification %}{% endblock %}" />
+
+    {# URL canonique absolue (HTTPS en production via SITE_DOMAIN) #}
+    <link rel="canonical" href="{% block canonical_url %}{{ SEO_CANONICAL_URL }}{% endblock canonical_url %}" />
+
+    {# Sitemap — découverte crawl (robots.txt déjà en place) #}
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ SEO_ORIGIN }}{% url 'django.contrib.sitemaps.views.sitemap' %}" />
+
+    {# Hreflang — fr actuel ; bloc prêt pour d'autres locales #}
+    <link rel="alternate" hreflang="fr" href="{% block hreflang_fr %}{{ SEO_CANONICAL_URL }}{% endblock %}" />
+    <link rel="alternate" hreflang="x-default" href="{% block hreflang_default %}{{ SEO_CANONICAL_URL }}{% endblock %}" />
+    {% block hreflang_extra %}{% endblock hreflang_extra %}
+
+    {# Géolocalisation — Kinshasa / Kintambo #}
+    <meta name="geo.region" content="CD-KN" />
+    <meta name="geo.placename" content="Kinshasa, République Démocratique du Congo" />
+    <meta name="geo.position" content="-4.3276;15.3136" />
+    <meta name="ICBM" content="-4.3276, 15.3136" />
+
+    {# Open Graph #}
+    <meta property="og:title" content="{% block og_title %}{{ page|default:'Peto Express SARL' }} - Housekeeping & nettoyage industriel en RDC{% endblock og_title %}" />
     <meta
       property="og:description"
-      content="Peto Express RDC propose des services de housekeeping, nettoyage industriel et entretien d'espaces professionnels pour entreprises, industries et institutions en République Démocratique du Congo."
+      content="{% block og_description %}Peto Express SARL propose des services de housekeeping, nettoyage industriel et entretien d'espaces professionnels pour entreprises, industries et institutions en République Démocratique du Congo.{% endblock og_description %}"
     />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://{{ request.get_host }}{{ request.path }}" />
-    <meta property="og:image" content="https://{{ request.get_host }}{% static 'images/social_network_logo.png' %}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Peto Express RDC - Housekeeping et nettoyage industriel en RDC" />
-    <meta property="og:site_name" content="Peto Express RDC" />
-    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}" />
+    <meta property="og:url" content="{% block og_url %}{{ SEO_CANONICAL_URL }}{% endblock og_url %}" />
+    <meta property="og:image" content="{% block og_image %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}{% endblock og_image %}" />
+    <meta property="og:image:secure_url" content="{% block og_image_secure %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}{% endblock %}" />
+    <meta property="og:image:type" content="image/png" />
+    {# Dimensions réelles du PNG (idéal OG recommandé : 1200×630) #}
+    <meta property="og:image:width" content="{% block og_image_width %}1183{% endblock %}" />
+    <meta property="og:image:height" content="{% block og_image_height %}725{% endblock %}" />
+    <meta property="og:image:alt" content="{% block og_image_alt %}Peto Express SARL - Housekeeping et nettoyage industriel en RDC{% endblock %}" />
+    <meta property="og:site_name" content="{{ SEO_SITE_NAME|default:'Peto Express SARL' }}" />
+    <meta property="og:locale" content="{{ SEO_LOCALE|default:'fr_FR' }}" />
 
-    <!-- Twitter Card -->
+    {# Twitter Card #}
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="{{ page|default:'Peto Express RDC' }} - Housekeeping & nettoyage industriel en RDC" />
-    <meta name="twitter:description" content="Peto Express RDC, solutions professionnelles de housekeeping et nettoyage industriel en République Démocratique du Congo." />
-    <meta name="twitter:image" content="https://{{ request.get_host }}{% static 'images/social_network_logo.png' %}" />
-    <meta name="twitter:image:alt" content="Peto Express RDC - Housekeeping et nettoyage industriel" />
+    <meta name="twitter:title" content="{% block twitter_title %}{{ page|default:'Peto Express SARL' }} - Housekeeping & nettoyage industriel en RDC{% endblock twitter_title %}" />
+    <meta name="twitter:description" content="{% block twitter_description %}Peto Express SARL, solutions professionnelles de housekeeping et nettoyage industriel en République Démocratique du Congo.{% endblock twitter_description %}" />
+    <meta name="twitter:image" content="{% block twitter_image %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}{% endblock twitter_image %}" />
+    <meta name="twitter:image:alt" content="{% block twitter_image_alt %}Peto Express SARL - Housekeeping et nettoyage industriel{% endblock %}" />
 
-    <!-- Favicon -->
+    {# Favicon #}
     <link rel="icon" type="image/x-icon" href="{% static 'images/favicon/favicon.ico' %}" />
-    <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon/favicon.ico' %}" />
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon/favicon-16x16.png' %}" />
     <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon/favicon-32x32.png' %}" />
     <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/favicon/android-chrome-192x192.png' %}" />
@@ -59,42 +88,166 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicon/apple-touch-icon.png' %}" />
     <link rel="manifest" href="{% static 'images/favicon/site.webmanifest' %}" />
 
-    <!-- Theme Colors -->
     <meta name="theme-color" content="#034169" />
     <meta name="msapplication-TileColor" content="#034169" />
-    <meta name="msapplication-TileImage" content="https://{{ request.get_host }}{% static 'images/social_network_logo.png' %}" />
-
-    <!-- Additional SEO -->
-    <meta name="application-name" content="Peto Express RDC" />
-    <meta name="apple-mobile-web-app-title" content="Peto Express RDC" />
+    <meta name="msapplication-TileImage" content="{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}" />
+    <meta name="application-name" content="Peto Express SARL" />
+    <meta name="apple-mobile-web-app-title" content="Peto Express SARL" />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-    <!-- Bootstrap & Icônes -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-
-    <!-- Fonts Google -->
+    {# DNS / preconnect — CDN critiques #}
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    {# Preload LCP / identité #}
+    <link rel="preload" href="{% static 'images/logo.png' %}" as="image" type="image/png" />
+    <link rel="preload" href="{% static 'images/favicon/favicon.ico' %}" as="image" type="image/x-icon" />
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&amp;display=swap"
+      as="style"
+    />
+    {% block preload_lcp %}{% endblock preload_lcp %}
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet" />
 
-    <!-- Base CSS -->
     <link href="{% static 'style/index.css' %}" rel="stylesheet" />
     <link href="{% static 'style/footer.css' %}" rel="stylesheet" />
 
     {% block extra_css %}{% endblock extra_css %}
+
+    {# JSON-LD — ProfessionalService + WebSite (SEO + AI search) #}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["ProfessionalService", "LocalBusiness", "Organization"],
+          "@id": "{{ SEO_ORIGIN }}/#organization",
+          "name": "Peto Express SARL",
+          "alternateName": "Peto Express",
+          "legalName": "Peto Express SARL",
+          "url": "{{ SEO_ORIGIN }}/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{{ SEO_ORIGIN }}{% static 'images/logo.png' %}",
+            "contentUrl": "{{ SEO_ORIGIN }}{% static 'images/logo.png' %}",
+            "caption": "Logo Peto Express SARL"
+          },
+          "image": "{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}",
+          "description": "Entreprise congolaise spécialisée en housekeeping, nettoyage industriel et entretien d'espaces professionnels à Kinshasa et en République Démocratique du Congo.",
+          "email": "info@petoexpressrdc.com",
+          "telephone": ["+243815009808", "+243972238520"],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "22, Avenue Équateur, Q. Salongo, Commune de Kintambo",
+            "addressLocality": "Kinshasa",
+            "addressRegion": "Kinshasa",
+            "addressCountry": "CD"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": -4.3276,
+            "longitude": 15.3136
+          },
+          "areaServed": [
+            {
+              "@type": "City",
+              "name": "Kinshasa"
+            },
+            {
+              "@type": "Country",
+              "name": "République Démocratique du Congo",
+              "sameAs": "https://www.wikidata.org/wiki/Q974"
+            }
+          ],
+          "priceRange": "$$",
+          "currenciesAccepted": "CDF, USD",
+          "paymentAccepted": "Cash, Bank Transfer",
+          "knowsLanguage": ["fr"],
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+243815009808",
+              "contactType": "customer service",
+              "email": "info@petoexpressrdc.com",
+              "areaServed": "CD",
+              "availableLanguage": ["French", "fr"]
+            }
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Services Peto Express SARL",
+            "itemListElement": [
+              {
+                "@type": "OfferCatalog",
+                "name": "Nettoyage professionnel",
+                "url": "{{ SEO_ORIGIN }}{% url 'core:nettoyage_professionnel' %}"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Entretien et traitement",
+                "url": "{{ SEO_ORIGIN }}{% url 'core:entretien_et_traitement' %}"
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Hygiène et assainissement",
+                "url": "{{ SEO_ORIGIN }}{% url 'core:hygiene_et_assainissement' %}"
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ SEO_ORIGIN }}/#website",
+          "url": "{{ SEO_ORIGIN }}/",
+          "name": "Peto Express SARL",
+          "description": "Housekeeping et nettoyage industriel en République Démocratique du Congo.",
+          "publisher": { "@id": "{{ SEO_ORIGIN }}/#organization" },
+          "inLanguage": "fr-CD",
+          "copyrightHolder": { "@id": "{{ SEO_ORIGIN }}/#organization" },
+          "about": { "@id": "{{ SEO_ORIGIN }}/#organization" }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "{{ SEO_CANONICAL_URL }}#webpage",
+          "url": "{{ SEO_CANONICAL_URL }}",
+          "name": "{{ SEO_SITE_NAME|default:'Peto Express SARL'|escapejs }}",
+          "isPartOf": { "@id": "{{ SEO_ORIGIN }}/#website" },
+          "about": { "@id": "{{ SEO_ORIGIN }}/#organization" },
+          "inLanguage": "fr-CD",
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}"
+          }
+        }
+      ]
+    }
+    </script>
+    {% block structured_data_extra %}{% endblock structured_data_extra %}
   </head>
 
   <body class="{% block body_class %}{% endblock body_class %}">
+    <a class="visually-hidden-focusable position-absolute top-0 start-0 z-3 m-2 p-2 bg-white text-dark rounded" href="#main-content">
+      Aller au contenu principal
+    </a>
+
     {% block base %}{% endblock base %}
     {% include "partials/footer.html" %}
 
-    <!-- Bootstrap JS -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq"
       crossorigin="anonymous"
+      defer
     ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {

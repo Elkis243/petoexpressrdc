@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.shortcuts import redirect, render
+
+from .emails import send_contact_email
+from .forms import ContactForm
 
 
 def home(request):
@@ -12,11 +16,36 @@ def home(request):
 
 
 def contact(request):
+    form = ContactForm()
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            if send_contact_email(form.cleaned_data):
+                messages.success(
+                    request,
+                    "Votre message a été envoyé avec succès. "
+                    "Notre équipe vous répondra dans les meilleurs délais.",
+                )
+                return redirect('core:contact')
+
+            messages.error(
+                request,
+                "Une erreur est survenue lors de l'envoi de votre message. "
+                "Veuillez réessayer ultérieurement.",
+            )
+        else:
+            messages.error(
+                request,
+                "Veuillez corriger les champs indiqués avant de renvoyer le formulaire.",
+            )
+
     return render(
         request,
         'core/contact.html',
         {
             'page': 'Contact',
+            'form': form,
         },
     )
 

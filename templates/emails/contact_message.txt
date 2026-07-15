@@ -1,0 +1,18 @@
+Objet : {{ subject }}
+
+Nouveau message reçu via le formulaire de contact — {{ site_name }}
+
+Date d'envoi : {{ sent_at|date:"d/m/Y H:i" }}
+
+Nom : {{ name }}
+E-mail : {{ email }}
+Téléphone : {{ phone }}
+{% if company %}Société / Organisation : {{ company }}
+{% endif %}Sujet : {{ subject }}
+
+Message :
+{{ message }}
+
+—
+Cet e-mail a été généré automatiquement depuis le site {{ site_name }}.
+Répondre directement à cet e-mail pour contacter {{ name }} <{{ email }}>.

@@ -4,7 +4,7 @@
 {% block title %}Nos secteurs d'activité{% endblock %}
 
 {% block meta_description %}
-Découvrez les secteurs d'activité accompagnés par Peto Express RDC en housekeeping et entretien professionnel.
+Découvrez les secteurs d'activité accompagnés par Peto Express SARL en housekeeping et entretien professionnel.
 {% endblock meta_description %}
 
 {% block extra_css %}
@@ -12,10 +12,14 @@ Découvrez les secteurs d'activité accompagnés par Peto Express RDC en houseke
 <link href="{% static 'style/service.css' %}" rel="stylesheet" />
 {% endblock extra_css %}
 
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
 {% block base %}
 {% include "partials/navbar.html" %}
 
-<main>
+<main id="main-content">
   <section
     class="hero-section service-page-hero"
     style="--hero-bg-image: url('{% static 'images/other-hero.png' %}');"
@@ -46,7 +50,7 @@ Découvrez les secteurs d'activité accompagnés par Peto Express RDC en houseke
               Des solutions adaptées à chaque environnement
             </h2>
             <p class="secteurs-section__text">
-              Peto Express RDC intervient auprès d'acteurs variés, avec des protocoles
+              Peto Express SARL intervient auprès d'acteurs variés, avec des protocoles
               ajustés à leurs contraintes et à leurs standards d'hygiène.
             </p>
           </div>

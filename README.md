@@ -1,8 +1,22 @@
-# Peto Express RDC
+# Peto Express SARL
 
-Projet Peto Express RDC.
+Projet Peto Express SARL.
 
-## SEO (sitemap & robots)
+## E-mail / contact
+
+Configuration SMTP uniquement via le fichier `.env` (`EMAIL_*`, `CONTACT_EMAIL_TO`).
+
+```bash
+# Variables dans .env (jamais committer ce fichier)
+# Test local sans SMTP :
+EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+```
+
+Le formulaire `/contact/` valide côté serveur, envoie un e-mail HTML+texte, affiche succès/erreur et journalise les échecs (`core.contact`).
+
+`templates/base.html` inclut JSON-LD (`ProfessionalService` / `LocalBusiness`), canonical HTTPS via `SITE_DOMAIN` (`core.context_processors.seo`), hreflang, geo, preloads LCP et métas OG/Twitter.
+
+**Image sociale** : `static/images/social_network_logo.png` (1183×725). Idéal recommandé : **1200×630** — recadrer si besoin pour un rendu OG optimal.
 
 | URL | Rôle |
 |---|---|
