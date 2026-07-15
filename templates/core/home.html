@@ -12,14 +12,14 @@ Peto Express SARL propose des services professionnels de housekeeping et de nett
 {% endblock extra_css %}
 
 {% block preload_lcp %}
-<link rel="preload" href="{% static 'images/hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+<link rel="preload" href="{% static 'images/hero.webp' %}" as="image" type="image/webp" fetchpriority="high" />
 {% endblock preload_lcp %}
 
 {% block base %}
 {% include "partials/navbar.html" %}
 
 <main id="main-content">
-  <section class="hero-section" style="--hero-bg-image: url('{% static 'images/hero.png' %}');">
+  <section class="hero-section" style="--hero-bg-image: url('{% static 'images/hero.webp' %}');">
     <div class="hero-section__bg" aria-hidden="true"></div>
 
     <div class="container position-relative">
