@@ -451,11 +451,21 @@ main {
   display: block;
   width: 100%;
   height: auto;
-  min-height: 0;
-  max-height: 28rem;
   object-fit: cover;
   object-position: center top;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
+}
+
+@media (max-width: 991.98px) {
+  .about-section__image {
+    aspect-ratio: auto;
+    min-height: 0;
+    max-height: none;
+    height: auto;
+    width: 100%;
+    object-fit: contain;
+    object-position: center center;
+  }
 }
 
 .about-section__title {
@@ -884,10 +894,6 @@ main {
     max-width: none;
   }
 
-  .about-section__image {
-    max-height: 20rem;
-  }
-
   .cta-section__image {
     max-height: 14rem;
   }
@@ -909,10 +915,6 @@ main {
 
   .hero-actions {
     margin-bottom: 1.5rem;
-  }
-
-  .about-section__image {
-    max-height: 16rem;
   }
 
   .cta-section__image {
