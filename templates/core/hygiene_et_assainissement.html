@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Hygiène et assainissement{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+<link href="{% static 'style/service.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main id="main-content">
+  {% include "partials/service_hero.html" with service_title="Hygiène et assainissement" %}
+
+  <section class="about-section" id="desinfection" aria-labelledby="desinfection-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Désinfection professionnelle par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <h2 class="about-section__title" id="desinfection-heading">
+                Désinfection
+              </h2>
+              <p class="about-section__text">
+                Nous assurons la désinfection complète de vos espaces pour éliminer
+                bactéries, virus et agents pathogènes. Interventions en bureaux,
+                espaces commerciaux, établissements de santé et résidences privées.
+              </p>
+              <p class="about-section__text">
+                Méthodes utilisées&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Produits désinfectants professionnels</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Traitement des surfaces sensibles</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Protocoles adaptés aux normes d'hygiène</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section about-section--alt" id="desinsectisation" aria-labelledby="desinsectisation-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+              <h2 class="about-section__title" id="desinsectisation-heading">
+                Désinsectisation
+              </h2>
+              <p class="about-section__text">
+                Nous éliminons les insectes nuisibles dans vos locaux, notamment
+                cafards, moustiques, fourmis et termites.
+              </p>
+              <p class="about-section__text">
+                Solutions utilisées&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Traitements préventifs</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Traitements curatifs</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Désinsectisation par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="deratisation" aria-labelledby="deratisation-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Dératisation par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <h2 class="about-section__title" id="deratisation-heading">
+                Dératisation
+              </h2>
+              <p class="about-section__text">
+                Nous proposons des solutions efficaces contre les rongeurs dans les
+                bureaux, entrepôts, restaurants et maisons. Objectif&nbsp;: éliminer
+                durablement les rats et souris.
+              </p>
+              <p class="about-section__text">
+                Méthodes utilisées&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Piégeage</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Traitement adapté</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Suivi et prévention</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include "partials/cta_section.html" %}
+</main>
+{% endblock base %}
+

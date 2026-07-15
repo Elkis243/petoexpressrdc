@@ -1,0 +1,14 @@
+html {
+  overflow-x: clip;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  font-size: 13.5px;
+  overflow-x: clip;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

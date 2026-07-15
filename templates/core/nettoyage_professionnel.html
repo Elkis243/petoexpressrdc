@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Nettoyage professionnel{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+<link href="{% static 'style/service.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main id="main-content">
+  {% include "partials/service_hero.html" with service_title="Nettoyage professionnel" %}
+
+  <section class="about-section" id="nettoyage-bureaux" aria-labelledby="nettoyage-bureaux-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Nettoyage professionnel de bureaux par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <h2 class="about-section__title" id="nettoyage-bureaux-heading">
+                Nettoyage de bureaux
+              </h2>
+              <p class="about-section__text">
+                Un cadre propre inspire confiance. Nous entretenons régulièrement ou
+                ponctuellement bureaux, immeubles, espaces commerciaux, banques,
+                institutions et centres médicaux.
+              </p>
+              <p class="about-section__text">
+                Nos interventions comprennent&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Dépoussiérage du mobilier</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage des sols</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Désinfection des postes de travail</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage des sanitaires</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Vidage des corbeilles</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage des vitres intérieures</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section about-section--alt" id="nettoyage-industriel" aria-labelledby="nettoyage-industriel-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+              <h2 class="about-section__title" id="nettoyage-industriel-heading">
+                Nettoyage industriel
+              </h2>
+              <p class="about-section__text">
+                Nous intervenons sur entrepôts, usines, parkings, sites logistiques
+                et zones techniques.
+              </p>
+              <p class="about-section__text">
+                Méthodes utilisées&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage mécanisé</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Autolaveuse professionnelle</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Monobrosse</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage haute pression</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Dépoussiérage industriel</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Nettoyage industriel par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="nettoyage-apres-travaux" aria-labelledby="nettoyage-apres-travaux-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Nettoyage après travaux par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <h2 class="about-section__title" id="nettoyage-apres-travaux-heading">
+                Nettoyage après travaux
+              </h2>
+              <p class="about-section__text">
+                Après travaux ou rénovation, nous assurons&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled mb-3">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Enlèvement des résidus de chantier</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage des surfaces</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Dégraissage</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Dépoussiérage complet</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Lavage des sols</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage des vitres</span>
+                </li>
+              </ul>
+              <p class="about-section__text mb-0">
+                Nous préparons vos locaux pour une mise en service immédiate.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include "partials/cta_section.html" %}
+</main>
+{% endblock base %}
+

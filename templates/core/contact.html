@@ -1,0 +1,258 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Contact{% endblock %}
+
+{% block meta_description %}
+Contactez Peto Express SARL pour un devis gratuit de nettoyage professionnel, entretien et hygiène à Kinshasa et en RDC.
+{% endblock meta_description %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+<link href="{% static 'style/service.css' %}" rel="stylesheet" />
+<link href="{% static 'style/contact.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main id="main-content" class="contact-page">
+  <section
+    class="hero-section service-page-hero"
+    style="--hero-bg-image: url('{% static 'images/other-hero.png' %}');"
+    aria-labelledby="contact-page-title"
+  >
+    <div class="hero-section__bg" aria-hidden="true"></div>
+
+    <div class="container position-relative">
+      <div class="service-page-hero__content text-center">
+        <h1 class="service-page-hero__title" id="contact-page-title">Contact</h1>
+        <nav class="service-page-hero__breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}">Home</a>
+          <span class="service-page-hero__breadcrumb-sep" aria-hidden="true">/</span>
+          <span aria-current="page">Contact</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-section" id="contact-form" aria-labelledby="contact-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row g-4 g-lg-5 align-items-start">
+            <div class="col-12 col-lg-6">
+              <h2 class="contact-section__title" id="contact-heading">
+                Avez-vous une
+                <span class="contact-section__accent">question&nbsp;?</span>
+              </h2>
+              <p class="contact-section__text">
+                Notre équipe reste disponible pour répondre à vos demandes et assurer
+                l'entretien professionnel de vos locaux à Kinshasa et partout en RDC.
+              </p>
+              <ul class="cta-section__contacts list-unstyled mb-0">
+                <li>
+                  <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                  <span>22, Avenue Équateur, Q. Salongo, Commune de Kintambo, Kinshasa, RD Congo</span>
+                </li>
+                <li>
+                  <i class="bi bi-telephone" aria-hidden="true"></i>
+                  <div class="cta-section__contacts-body">
+                    <a href="tel:+243815009808">+243 815 009 808</a>
+                    <span class="cta-section__contacts-sep" aria-hidden="true">·</span>
+                    <a href="tel:+243972238520">+243 972 238 520</a>
+                  </div>
+                </li>
+                <li>
+                  <i class="bi bi-envelope" aria-hidden="true"></i>
+                  <a href="mailto:info@petoexpressrdc.com">info@petoexpressrdc.com</a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <div class="contact-form-card">
+                {% if messages %}
+                <div class="contact-form__alerts mb-3" role="status" aria-live="polite">
+                  {% for message in messages %}
+                  <div
+                    class="contact-alert contact-alert--{% if message.tags %}{{ message.tags }}{% else %}info{% endif %}"
+                    role="alert"
+                  >
+                    <i
+                      class="bi {% if 'success' in message.tags %}bi-check-circle-fill{% elif 'error' in message.tags %}bi-exclamation-triangle-fill{% else %}bi-info-circle-fill{% endif %}"
+                      aria-hidden="true"
+                    ></i>
+                    <p class="mb-0">{{ message }}</p>
+                  </div>
+                  {% endfor %}
+                </div>
+                {% endif %}
+
+                <form
+                  class="contact-form needs-validation{% if form.errors %} was-validated{% endif %}"
+                  action="{% url 'core:contact' %}#contact-form"
+                  method="post"
+                  novalidate
+                  data-contact-form
+                >
+                  {% csrf_token %}
+                  <div class="row g-3 mb-3">
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="contact-name">Nom</label>
+                      <input
+                        class="form-control contact-form__input{% if form.name.errors %} is-invalid{% endif %}"
+                        type="text"
+                        id="contact-name"
+                        name="name"
+                        placeholder="Votre nom complet"
+                        autocomplete="name"
+                        maxlength="120"
+                        value="{{ form.name.value|default:'' }}"
+                        required
+                        data-msg-required="Veuillez indiquer votre nom."
+                      />
+                      <div class="invalid-feedback">
+                        {% if form.name.errors %}{{ form.name.errors.0 }}{% else %}Veuillez indiquer votre nom.{% endif %}
+                      </div>
+                    </div>
+                    <div class="col-12 col-sm-6">
+                      <label class="visually-hidden" for="contact-phone">Téléphone</label>
+                      <input
+                        class="form-control contact-form__input{% if form.phone.errors %} is-invalid{% endif %}"
+                        type="tel"
+                        id="contact-phone"
+                        name="phone"
+                        placeholder="Votre numéro de téléphone"
+                        autocomplete="tel"
+                        maxlength="40"
+                        value="{{ form.phone.value|default:'' }}"
+                        required
+                        data-msg-required="Veuillez indiquer votre numéro de téléphone."
+                      />
+                      <div class="invalid-feedback">
+                        {% if form.phone.errors %}{{ form.phone.errors.0 }}{% else %}Veuillez indiquer votre numéro de téléphone.{% endif %}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-email">Adresse e-mail</label>
+                    <input
+                      class="form-control contact-form__input{% if form.email.errors %} is-invalid{% endif %}"
+                      type="email"
+                      id="contact-email"
+                      name="email"
+                      placeholder="Votre adresse e-mail"
+                      autocomplete="email"
+                      maxlength="254"
+                      value="{{ form.email.value|default:'' }}"
+                      required
+                      data-msg-required="Veuillez indiquer votre adresse e-mail."
+                    />
+                    <div class="invalid-feedback">
+                      {% if form.email.errors %}{{ form.email.errors.0 }}{% else %}Veuillez indiquer une adresse e-mail valide.{% endif %}
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-company">Société / Organisation</label>
+                    <input
+                      class="form-control contact-form__input{% if form.company.errors %} is-invalid{% endif %}"
+                      type="text"
+                      id="contact-company"
+                      name="company"
+                      placeholder="Société / Organisation"
+                      autocomplete="organization"
+                      maxlength="150"
+                      value="{{ form.company.value|default:'' }}"
+                    />
+                    {% if form.company.errors %}
+                    <div class="invalid-feedback d-block">{{ form.company.errors.0 }}</div>
+                    {% endif %}
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-subject">Sujet de la demande</label>
+                    <input
+                      class="form-control contact-form__input{% if form.subject.errors %} is-invalid{% endif %}"
+                      type="text"
+                      id="contact-subject"
+                      name="subject"
+                      placeholder="Sujet de la demande"
+                      maxlength="200"
+                      value="{{ form.subject.value|default:'' }}"
+                      required
+                      data-msg-required="Veuillez indiquer le sujet de votre demande."
+                    />
+                    <div class="invalid-feedback">
+                      {% if form.subject.errors %}{{ form.subject.errors.0 }}{% else %}Veuillez indiquer le sujet de votre demande.{% endif %}
+                    </div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="visually-hidden" for="contact-message">Message</label>
+                    <textarea
+                      class="form-control contact-form__input contact-form__textarea{% if form.message.errors %} is-invalid{% endif %}"
+                      id="contact-message"
+                      name="message"
+                      rows="4"
+                      placeholder="Écrivez quelque chose..."
+                      maxlength="5000"
+                      required
+                      data-msg-required="Veuillez écrire votre message."
+                    >{{ form.message.value|default:'' }}</textarea>
+                    <div class="invalid-feedback">
+                      {% if form.message.errors %}{{ form.message.errors.0 }}{% else %}Veuillez écrire votre message.{% endif %}
+                    </div>
+                  </div>
+                  <button class="btn btn-contact-submit w-100" type="submit" data-contact-submit>
+                    <span class="btn-contact-submit__label">Envoyer le message</span>
+                    <span class="btn-contact-submit__loading d-none" aria-hidden="true">
+                      <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                      Envoi en cours…
+                    </span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock base %}
+
+{% block extra_js %}
+<script src="{% static 'js/validate_form.js' %}"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector("[data-contact-form]");
+    if (!form) {
+      return;
+    }
+
+    const submitBtn = form.querySelector("[data-contact-submit]");
+    const label = submitBtn && submitBtn.querySelector(".btn-contact-submit__label");
+    const loading = submitBtn && submitBtn.querySelector(".btn-contact-submit__loading");
+
+    form.addEventListener("submit", function () {
+      if (!form.checkValidity()) {
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.setAttribute("aria-busy", "true");
+      }
+      if (label) {
+        label.classList.add("d-none");
+      }
+      if (loading) {
+        loading.classList.remove("d-none");
+      }
+    });
+  });
+</script>
+{% endblock extra_js %}

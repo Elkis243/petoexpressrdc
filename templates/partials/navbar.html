@@ -1,0 +1,92 @@
+{% load static %}
+<header class="site-header">
+  <nav class="navbar navbar-expand-xl site-navbar">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'core:home' %}">
+        <img
+          src="{% static 'images/logo.png' %}"
+          alt="Peto Express SARL"
+          class="site-navbar__logo"
+          width="160"
+          height="48"
+          loading="eager"
+        />
+      </a>
+
+      <button
+        class="navbar-toggler border-0 shadow-none"
+        type="button"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#siteNavbar"
+        aria-controls="siteNavbar"
+        aria-label="Ouvrir le menu"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="siteNavbar" aria-labelledby="siteNavbarLabel">
+        <div class="offcanvas-header d-xl-none">
+          <h2 class="offcanvas-title h5 mb-0" id="siteNavbarLabel">Menu</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav site-navbar__links align-items-xl-center gap-xl-1 ms-xl-auto">
+            <li class="nav-item">
+              <a
+                class="nav-link{% if request.resolver_match.url_name == 'home' %} active{% endif %}"
+                href="{% url 'core:home' %}"
+                {% if request.resolver_match.url_name == 'home' %}aria-current="page"{% endif %}
+              >Home</a>
+            </li>
+            <li class="nav-item dropdown site-navbar__dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="{% url 'core:home' %}#nos-services"
+                id="navbarServicesDropdown"
+                role="button"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="outside"
+                aria-expanded="false"
+                aria-haspopup="true"
+              >Nos services</a>
+              <ul class="dropdown-menu site-navbar__dropdown-menu" aria-labelledby="navbarServicesDropdown">
+                <li>
+                  <a class="dropdown-item" href="{% url 'core:nettoyage_professionnel' %}">Nettoyage professionnel</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'core:entretien_et_traitement' %}">Entretien et traitement</a>
+                </li>
+                <li>
+                  <a class="dropdown-item" href="{% url 'core:hygiene_et_assainissement' %}">Hygiène et assainissement</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link{% if request.resolver_match.url_name == 'secteurs_activite' %} active{% endif %}"
+                href="{% url 'core:secteurs_activite' %}"
+                {% if request.resolver_match.url_name == 'secteurs_activite' %}aria-current="page"{% endif %}
+              >Nos secteurs d'activité</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link{% if request.resolver_match.url_name == 'a_propos' %} active{% endif %}"
+                href="{% url 'core:a_propos' %}"
+                {% if request.resolver_match.url_name == 'a_propos' %}aria-current="page"{% endif %}
+              >À propos</a>
+            </li>
+            <li class="nav-item">
+              <a
+                class="nav-link{% if request.resolver_match.url_name == 'contact' %} active{% endif %}"
+                href="{% url 'core:contact' %}"
+                {% if request.resolver_match.url_name == 'contact' %}aria-current="page"{% endif %}
+              >Contact</a>
+            </li>
+            <li class="nav-item ms-xl-3 mt-3 mt-xl-0">
+              <a class="btn btn-primary-custom" href="{% url 'core:contact' %}">Demander un devis</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

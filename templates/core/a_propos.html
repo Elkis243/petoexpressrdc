@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}À propos{% endblock %}
+
+{% block meta_description %}
+Découvrez Peto Express SARL, entreprise spécialisée en housekeeping et nettoyage industriel en République Démocratique du Congo.
+{% endblock meta_description %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+<link href="{% static 'style/service.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main id="main-content">
+  <section
+    class="hero-section service-page-hero"
+    style="--hero-bg-image: url('{% static 'images/other-hero.png' %}');"
+    aria-labelledby="apropos-page-title"
+  >
+    <div class="hero-section__bg" aria-hidden="true"></div>
+
+    <div class="container position-relative">
+      <div class="service-page-hero__content text-center">
+        <h1 class="service-page-hero__title" id="apropos-page-title">Qui sommes-nous&nbsp;?</h1>
+        <nav class="service-page-hero__breadcrumb" aria-label="Fil d'Ariane">
+          <a href="{% url 'core:home' %}">Home</a>
+          <span class="service-page-hero__breadcrumb-sep" aria-hidden="true">/</span>
+          <span aria-current="page">À propos</span>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section about-section--alt" id="qui-sommes-nous" aria-labelledby="qui-sommes-nous-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/picture1.webp' %}"
+                  alt="Équipe Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-lg-6">
+              <h2 class="about-section__title" id="qui-sommes-nous-heading">
+                Qui sommes-nous&nbsp;?
+              </h2>
+              <p class="about-section__text">
+                Peto Express SARL est une entreprise congolaise spécialisée en housekeeping
+                et nettoyage industriel. Nous accompagnons entreprises, institutions et
+                particuliers avec des solutions d'entretien adaptées à chaque environnement.
+              </p>
+              <p class="about-section__text mb-0">
+                Qualité, sécurité et satisfaction client guident chaque intervention,
+                réalisée par des équipes formées selon des standards professionnels.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section" aria-labelledby="mission-vision-heading">
+    <div class="services-section__pattern" aria-hidden="true"></div>
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <h2 class="visually-hidden" id="mission-vision-heading">
+            Mission, vision et valeurs
+          </h2>
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+              <article class="service-card h-100">
+                <h3 class="service-card__title">Notre mission</h3>
+                <p class="service-card__text mb-0">
+                  Offrir des services d'entretien fiables et durables, pour des espaces
+                  propres, sains et valorisants au quotidien.
+                </p>
+              </article>
+            </div>
+            <div class="col">
+              <article class="service-card h-100">
+                <h3 class="service-card__title">Notre vision</h3>
+                <p class="service-card__text mb-0">
+                  Devenir la référence du nettoyage professionnel, reconnue pour
+                  son exigence, sa proximité et son sens du détail.
+                </p>
+              </article>
+            </div>
+            <div class="col">
+              <article class="service-card h-100">
+                <h3 class="service-card__title">Nos valeurs</h3>
+                <p class="service-card__text mb-0">
+                  Excellence, professionnalisme, intégrité, sécurité, ponctualité
+                  et satisfaction client.
+                </p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock base %}
+

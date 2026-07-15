@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block meta_description %}
+Peto Express SARL propose des services professionnels de housekeeping et de nettoyage industriel pour entreprises, industries et institutions à Kinshasa et en RDC.
+{% endblock meta_description %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main id="main-content">
+  <section class="hero-section" style="--hero-bg-image: url('{% static 'images/hero.png' %}');">
+    <div class="hero-section__bg" aria-hidden="true"></div>
+
+    <div class="container position-relative">
+      <div class="row">
+        <div class="col-12 col-lg-8 col-xl-7 text-start">
+          <h1 class="hero-title">
+            Des locaux propres, un environnement <span class="hero-title__accent">professionnel</span>
+          </h1>
+
+          <p class="hero-text">
+            Peto Express SARL déploie des équipes formées et des protocoles rigoureux
+            pour l'entretien de bureaux, sites industriels, hôtels et institutions
+            à Kinshasa et dans toute la République Démocratique du Congo.
+          </p>
+
+          <div class="hero-actions d-flex flex-wrap align-items-center">
+            <a class="btn btn-hero-primary" href="{% url 'core:contact' %}">
+              <i class="bi bi-file-earmark-text me-2" aria-hidden="true"></i>
+              Demander un devis
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="qui-sommes-nous" aria-labelledby="about-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6 about-reveal">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/picture1.webp' %}"
+                  alt="Équipe Peto Express SARL en intervention de nettoyage professionnel"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6 about-reveal about-reveal--delay">
+              <h2 class="about-section__title" id="about-heading">
+                Votre partenaire de confiance pour tous vos besoins en nettoyage professionnel
+              </h2>
+              <p class="about-section__text">
+                Peto Express SARL, entreprise congolaise spécialisée en housekeeping et
+                nettoyage industriel, accompagne entreprises, institutions et hôtels
+                avec des solutions d'entretien adaptées à leurs besoins.
+              </p>
+              <p class="about-section__text">
+                Qualité, sécurité et satisfaction client guident chaque intervention,
+                réalisée par des équipes formées selon des standards professionnels.
+              </p>
+
+              <a class="btn btn-about-cta" href="#">
+                En savoir plus
+                <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section" id="nos-services" aria-labelledby="services-heading">
+    <div class="services-section__pattern" aria-hidden="true"></div>
+    <div class="container position-relative">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="services-section__intro text-center services-reveal">
+            <h2 class="services-section__title" id="services-heading">
+              Découvrez nos services
+            </h2>
+            <p class="services-section__text">
+              Nettoyage, entretien et hygiène : des solutions professionnelles pour
+              chaque type d'espace.
+            </p>
+          </div>
+
+          <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col">
+              <a class="service-card services-reveal" href="{% url 'core:nettoyage_professionnel' %}">
+                <span class="service-card__icon" aria-hidden="true">
+                  <i class="bi bi-stars"></i>
+                </span>
+                <h3 class="service-card__title">Nettoyage professionnel</h3>
+                <p class="service-card__text">
+                  Entretien complet de bureaux, commerces, sites industriels et chantiers :
+                  sols, vitres, rideaux, nettoyage après travaux, ainsi que désinsectisation,
+                  dératisation et fumigation.
+                </p>
+                <span class="service-card__link">
+                  Découvrir
+                  <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </span>
+              </a>
+            </div>
+            <div class="col">
+              <a class="service-card services-reveal services-reveal--delay-1" href="{% url 'core:entretien_et_traitement' %}">
+                <span class="service-card__icon" aria-hidden="true">
+                  <i class="bi bi-house"></i>
+                </span>
+                <h3 class="service-card__title">Entretien et traitement</h3>
+                <p class="service-card__text">
+                  Entretien technique des surfaces et équipements : traitement des sols,
+                  vitres, tapis et moquettes, ainsi que l'entretien de piscines et le
+                  service de jardinage pour prolonger la durée de vie de vos installations.
+                </p>
+                <span class="service-card__link">
+                  Découvrir
+                  <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </span>
+              </a>
+            </div>
+            <div class="col">
+              <a class="service-card services-reveal services-reveal--delay-2" href="{% url 'core:hygiene_et_assainissement' %}">
+                <span class="service-card__icon" aria-hidden="true">
+                  <i class="bi bi-virus"></i>
+                </span>
+                <h3 class="service-card__title">Hygiène et assainissement</h3>
+                <p class="service-card__text">
+                  Interventions spécialisées pour un environnement sain : désinfection,
+                  désinsectisation, dératisation et fumigation.
+                </p>
+                <span class="service-card__link">
+                  Découvrir
+                  <i class="bi bi-arrow-right" aria-hidden="true"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="trust-section" id="confiance" aria-labelledby="trust-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="trust-section__intro text-center trust-reveal">
+            <h2 class="trust-section__title" id="trust-heading">
+              Pourquoi choisir Peto Express&nbsp;?
+            </h2>
+            <p class="trust-section__text">
+              Transparence, rigueur et proximité : les bases d'une collaboration durable
+              avec vos espaces et vos équipes.
+            </p>
+          </div>
+
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-4 g-3 trust-section__grid">
+            <div class="col">
+              <article class="trust-point trust-reveal h-100">
+                <span class="trust-point__icon" aria-hidden="true">
+                  <i class="bi bi-people"></i>
+                </span>
+                <div class="trust-point__body">
+                  <h3 class="trust-point__title">Personnels expérimentés</h3>
+                  <p class="trust-point__text">Professionnels formés et supervisés.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col">
+              <article class="trust-point trust-reveal trust-reveal--delay-1 h-100">
+                <span class="trust-point__icon" aria-hidden="true">
+                  <i class="bi bi-shield-check"></i>
+                </span>
+                <div class="trust-point__body">
+                  <h3 class="trust-point__title">Standards professionnels</h3>
+                  <p class="trust-point__text">Protocoles appliqués à chaque site.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col">
+              <article class="trust-point trust-reveal trust-reveal--delay-2 h-100">
+                <span class="trust-point__icon" aria-hidden="true">
+                  <i class="bi bi-speedometer2"></i>
+                </span>
+                <div class="trust-point__body">
+                  <h3 class="trust-point__title">Équipements modernes</h3>
+                  <p class="trust-point__text">Matériel professionnel adapté à chaque site.</p>
+                </div>
+              </article>
+            </div>
+            <div class="col">
+              <article class="trust-point trust-reveal trust-reveal--delay-3 h-100">
+                <span class="trust-point__icon" aria-hidden="true">
+                  <i class="bi bi-clock"></i>
+                </span>
+                <div class="trust-point__body">
+                  <h3 class="trust-point__title">Respect des délais</h3>
+                  <p class="trust-point__text">Interventions planifiées et tenues à l'horaire.</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section" id="devis" aria-labelledby="cta-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4">
+            <div class="col-12 col-lg-5 d-none d-lg-block">
+              <div class="cta-section__media">
+                <img
+                  src="{% static 'images/picture2.png' %}"
+                  alt="Intervention de nettoyage professionnel Peto Express SARL"
+                  class="cta-section__image img-fluid w-100"
+                  width="800"
+                  height="600"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div class="col-12 col-lg-7">
+              <div class="cta-section__content">
+                <h2 class="cta-section__title" id="cta-heading">
+                  Prêt pour un espace impeccable ?
+                </h2>
+                <p class="cta-section__text">
+                  Contactez Peto Express SARL pour une estimation adaptée à vos locaux.
+                  Réponse rapide, devis clair et sans engagement.
+                </p>
+                <ul class="cta-section__contacts list-unstyled">
+                  <li>
+                    <i class="bi bi-geo-alt" aria-hidden="true"></i>
+                    <span>22, Avenue Équateur, Q. Salongo, Commune de Kintambo, Kinshasa, RD Congo</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-telephone" aria-hidden="true"></i>
+                    <div class="cta-section__contacts-body">
+                      <a href="tel:+243815009808">+243 815 009 808</a>
+                      <span class="cta-section__contacts-sep" aria-hidden="true">·</span>
+                      <a href="tel:+243972238520">+243 972 238 520</a>
+                    </div>
+                  </li>
+                  <li>
+                    <i class="bi bi-envelope" aria-hidden="true"></i>
+                    <a href="mailto:info@petoexpressrdc.com">info@petoexpressrdc.com</a>
+                  </li>
+                </ul>
+                <a class="btn btn-cta-primary" href="{% url 'core:contact' %}">
+                  Obtenir un devis gratuit
+                  <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% endblock base %}

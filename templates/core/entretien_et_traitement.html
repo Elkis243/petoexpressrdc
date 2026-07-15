@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Entretien et traitement{% endblock %}
+
+{% block extra_css %}
+<link href="{% static 'style/home.css' %}" rel="stylesheet" />
+<link href="{% static 'style/service.css' %}" rel="stylesheet" />
+{% endblock extra_css %}
+
+{% block preload_lcp %}
+<link rel="preload" href="{% static 'images/other-hero.png' %}" as="image" type="image/png" fetchpriority="high" />
+{% endblock preload_lcp %}
+
+{% block base %}
+{% include "partials/navbar.html" %}
+
+<main id="main-content">
+  {% include "partials/service_hero.html" with service_title="Entretien et traitement" %}
+
+  <section class="about-section" id="nettoyage-vitres" aria-labelledby="nettoyage-vitres-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Nettoyage de vitres par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <h2 class="about-section__title" id="nettoyage-vitres-heading">
+                Nettoyage de vitres
+              </h2>
+              <p class="about-section__text">
+                Des vitrages limpides valorisent votre image. Nous nettoyons
+                vitres intérieures et extérieures, baies et façades vitrées.
+              </p>
+              <p class="about-section__text">
+                Méthodes utilisées&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage manuel professionnel</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Produits adaptés sans traces</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Équipements sécurisés</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section about-section--alt" id="nettoyage-tapis" aria-labelledby="nettoyage-tapis-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6 order-2 order-lg-1">
+              <h2 class="about-section__title" id="nettoyage-tapis-heading">
+                Nettoyage tapis &amp; moquettes
+              </h2>
+              <p class="about-section__text">
+                Nous proposons un traitement complet&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Analyse du type de tissu</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Élimination des taches</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Shampouinage professionnel</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Brossage et séchage</span>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-12 col-lg-6 order-1 order-lg-2">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Nettoyage de tapis et moquettes par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="entretien-piscines" aria-labelledby="entretien-piscines-heading">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12 col-lg-10">
+          <div class="row align-items-center g-4 g-lg-5">
+            <div class="col-12 col-lg-6">
+              <div class="about-section__media">
+                <img
+                  src="{% static 'images/home/about.jpg' %}"
+                  alt="Entretien de piscines par Peto Express SARL"
+                  class="about-section__image img-fluid w-100"
+                  width="1200"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+
+            <div class="col-12 col-lg-6">
+              <h2 class="about-section__title" id="entretien-piscines-heading">
+                Entretien de piscines
+              </h2>
+              <p class="about-section__text">
+                Nos prestations incluent&nbsp;:
+              </p>
+              <ul class="service-detail-list list-unstyled">
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Nettoyage du bassin</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Traitement de l'eau</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Contrôle du pH</span>
+                </li>
+                <li>
+                  <i class="bi bi-check-circle-fill" aria-hidden="true"></i>
+                  <span>Entretien régulier</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include "partials/cta_section.html" %}
+</main>
+{% endblock base %}
+
