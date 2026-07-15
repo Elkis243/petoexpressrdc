@@ -18,8 +18,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'core.apps.CoreConfig',
 ]
+
+SITE_ID = 1
+# Domaine Sites (sitemap). En local : localhost:8000.
+# En production : www.petoexpressrdc.com (voir congif.settings.production).
+SITE_DOMAIN = os.getenv('SITE_DOMAIN', 'localhost:8000')
+SITE_NAME = os.getenv('SITE_NAME', 'Peto Express RDC')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
