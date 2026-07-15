@@ -1,6 +1,6 @@
 {% load static %}
 <header class="site-header">
-  <nav class="navbar navbar-expand-lg site-navbar">
+  <nav class="navbar navbar-expand-xl site-navbar">
     <div class="container">
       <a class="navbar-brand" href="{% url 'core:home' %}">
         <img
@@ -25,12 +25,12 @@
       </button>
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="siteNavbar" aria-labelledby="siteNavbarLabel">
-        <div class="offcanvas-header d-lg-none">
+        <div class="offcanvas-header d-xl-none">
           <h2 class="offcanvas-title h5 mb-0" id="siteNavbarLabel">Menu</h2>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Fermer"></button>
         </div>
         <div class="offcanvas-body">
-          <ul class="navbar-nav site-navbar__links align-items-lg-center gap-lg-1 ms-lg-auto">
+          <ul class="navbar-nav site-navbar__links align-items-xl-center gap-xl-1 ms-xl-auto">
             <li class="nav-item">
               <a
                 class="nav-link{% if request.resolver_match.url_name == 'home' %} active{% endif %}"
@@ -81,7 +81,7 @@
                 {% if request.resolver_match.url_name == 'contact' %}aria-current="page"{% endif %}
               >Contact</a>
             </li>
-            <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+            <li class="nav-item ms-xl-3 mt-3 mt-xl-0">
               <a class="btn btn-primary-custom" href="{% url 'core:contact' %}">Demander un devis</a>
             </li>
           </ul>

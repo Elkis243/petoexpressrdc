@@ -18,8 +18,9 @@
 
 .site-footer__logo {
   display: block;
-  height: 4rem;
+  height: clamp(3rem, 8vw, 4rem);
   width: auto;
+  max-width: 100%;
   object-fit: contain;
 }
 
@@ -73,6 +74,15 @@
   gap: 0.65rem;
   margin-bottom: 0.9rem;
   line-height: 1.5;
+  min-width: 0;
+}
+
+.site-footer__item > span,
+.site-footer__item > a,
+.site-footer__phones {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .site-footer__item:last-child {

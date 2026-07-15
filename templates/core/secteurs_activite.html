@@ -51,7 +51,7 @@ Découvrez les secteurs d'activité accompagnés par Peto Express RDC en houseke
             </p>
           </div>
 
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 g-lg-4">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-4 g-3 g-lg-4">
             <div class="col">
               <article class="secteur-item h-100">
                 <span class="secteur-item__index" aria-hidden="true">01</span>
@@ -105,39 +105,3 @@ Découvrez les secteurs d'activité accompagnés par Peto Express RDC en houseke
 </main>
 {% endblock base %}
 
-{% block extra_js %}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const offcanvasElement = document.getElementById("siteNavbar");
-
-    if (offcanvasElement && window.bootstrap) {
-      try {
-        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement);
-        const mobileMediaQuery = window.matchMedia("(max-width: 991.98px)");
-
-        offcanvasElement.addEventListener("click", function (event) {
-          if (!mobileMediaQuery.matches) {
-            return;
-          }
-
-          const navigableLink = event.target.closest("a.nav-link, a.btn, a.dropdown-item");
-          if (!navigableLink) {
-            return;
-          }
-
-          if (navigableLink.classList.contains("dropdown-toggle")) {
-            return;
-          }
-
-          const href = navigableLink.getAttribute("href");
-          if (href && href !== "#") {
-            bsOffcanvas.hide();
-          }
-        });
-      } catch (error) {
-        console.warn("Navbar offcanvas unavailable:", error);
-      }
-    }
-  });
-</script>
-{% endblock extra_js %}

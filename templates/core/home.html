@@ -31,7 +31,7 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
             à Kinshasa et dans toute la République Démocratique du Congo.
           </p>
 
-          <div class="hero-actions d-flex flex-column flex-sm-row flex-wrap align-items-stretch align-items-sm-center">
+          <div class="hero-actions d-flex flex-wrap align-items-center">
             <a class="btn btn-hero-primary" href="{% url 'core:contact' %}">
               <i class="bi bi-file-earmark-text me-2" aria-hidden="true"></i>
               Demander un devis
@@ -78,49 +78,6 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
                 En savoir plus
                 <i class="bi bi-arrow-right ms-2" aria-hidden="true"></i>
               </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="stats-section" aria-label="Chiffres clés">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-12 col-lg-10">
-          <div class="row row-cols-2 row-cols-lg-4 g-3 g-lg-0 text-center stats-section__grid">
-            <div class="col">
-              <div class="stat-item stats-reveal h-100">
-                <p class="stat-item__value">
-                  <span class="stat-item__number" data-target="7">0</span><span class="stat-item__suffix">/7</span>
-                </p>
-                <p class="stat-item__label">Service disponible toute la semaine</p>
-              </div>
-            </div>
-            <div class="col">
-              <div class="stat-item stats-reveal stats-reveal--delay-1 h-100">
-                <p class="stat-item__value">
-                  <span class="stat-item__number" data-target="50">0</span><span class="stat-item__suffix">+</span>
-                </p>
-                <p class="stat-item__label">Entreprises accompagnées</p>
-              </div>
-            </div>
-            <div class="col">
-              <div class="stat-item stats-reveal stats-reveal--delay-2 h-100">
-                <p class="stat-item__value">
-                  <span class="stat-item__number" data-target="40">0</span><span class="stat-item__suffix">+</span>
-                </p>
-                <p class="stat-item__label">Professionnels formés</p>
-              </div>
-            </div>
-            <div class="col">
-              <div class="stat-item stats-reveal stats-reveal--delay-3 h-100">
-                <p class="stat-item__value">
-                  <span class="stat-item__number" data-target="98">0</span><span class="stat-item__suffix">%</span>
-                </p>
-                <p class="stat-item__label">Taux de satisfaction</p>
-              </div>
             </div>
           </div>
         </div>
@@ -214,7 +171,7 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
             </p>
           </div>
 
-          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-4 g-3 trust-section__grid">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-2 row-cols-xl-4 g-3 trust-section__grid">
             <div class="col">
               <article class="trust-point trust-reveal h-100">
                 <span class="trust-point__icon" aria-hidden="true">
@@ -322,82 +279,3 @@ Peto Express RDC propose des services professionnels de housekeeping et de netto
   </section>
 </main>
 {% endblock base %}
-
-{% block extra_js %}
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const offcanvasElement = document.getElementById("siteNavbar");
-
-    if (offcanvasElement && window.bootstrap) {
-      try {
-        const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement);
-        const mobileMediaQuery = window.matchMedia("(max-width: 991.98px)");
-
-        offcanvasElement.addEventListener("click", function (event) {
-          if (!mobileMediaQuery.matches) {
-            return;
-          }
-
-          const navigableLink = event.target.closest("a.nav-link, a.btn, a.dropdown-item");
-          if (!navigableLink) {
-            return;
-          }
-
-          if (navigableLink.classList.contains("dropdown-toggle")) {
-            return;
-          }
-
-          const href = navigableLink.getAttribute("href");
-          if (href && href !== "#") {
-            bsOffcanvas.hide();
-          }
-        });
-      } catch (error) {
-        console.warn("Navbar offcanvas unavailable:", error);
-      }
-    }
-
-    const animateCount = function (element) {
-      const target = Number(element.getAttribute("data-target")) || 0;
-      const duration = 1400;
-      const start = performance.now();
-
-      const tick = function (now) {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        element.textContent = String(Math.round(target * eased));
-
-        if (progress < 1) {
-          requestAnimationFrame(tick);
-        }
-      };
-
-      requestAnimationFrame(tick);
-    };
-
-    const statNumbers = document.querySelectorAll(".stat-item__number[data-target]");
-
-    if ("IntersectionObserver" in window && statNumbers.length) {
-      const countObserver = new IntersectionObserver(
-        function (entries, observer) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              animateCount(entry.target);
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
-      );
-
-      statNumbers.forEach(function (element) {
-        countObserver.observe(element);
-      });
-    } else {
-      statNumbers.forEach(function (element) {
-        element.textContent = element.getAttribute("data-target") || "0";
-      });
-    }
-  });
-</script>
-{% endblock extra_js %}

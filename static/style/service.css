@@ -64,9 +64,21 @@
 }
 
 @media (max-width: 991.98px) {
-  .service-page-hero {
+  .hero-section.service-page-hero {
     min-height: 48vh;
     min-height: 48dvh;
+    padding-top: calc(var(--site-navbar-offset, 4.5rem) + 1rem);
+    padding-bottom: clamp(2rem, 4vw, 3rem);
+  }
+
+  .service-page-hero__title {
+    font-size: clamp(1.65rem, 7vw, 2.35rem);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .secteur-item {
+    padding: 1.35rem 1.1rem 1.25rem;
   }
 }
 

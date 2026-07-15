@@ -98,15 +98,19 @@
     ></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        const toggle = document.getElementById("navbarServicesDropdown");
-        if (!toggle || !window.bootstrap) {
+        if (!window.bootstrap) {
           return;
         }
 
-        const desktopMedia = window.matchMedia("(min-width: 992px)");
+        const toggle = document.getElementById("navbarServicesDropdown");
+        const desktopMedia = window.matchMedia("(min-width: 1200px)");
         let dropdownInstance = null;
 
         function applyServicesDropdownMode() {
+          if (!toggle) {
+            return;
+          }
+
           if (desktopMedia.matches) {
             if (dropdownInstance) {
               dropdownInstance.dispose();
@@ -126,6 +130,38 @@
 
         applyServicesDropdownMode();
         desktopMedia.addEventListener("change", applyServicesDropdownMode);
+
+        const offcanvasElement = document.getElementById("siteNavbar");
+        if (!offcanvasElement) {
+          return;
+        }
+
+        try {
+          const bsOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(offcanvasElement);
+          const mobileMediaQuery = window.matchMedia("(max-width: 1199.98px)");
+
+          offcanvasElement.addEventListener("click", function (event) {
+            if (!mobileMediaQuery.matches) {
+              return;
+            }
+
+            const navigableLink = event.target.closest("a.nav-link, a.btn, a.dropdown-item");
+            if (!navigableLink) {
+              return;
+            }
+
+            if (navigableLink.classList.contains("dropdown-toggle")) {
+              return;
+            }
+
+            const href = navigableLink.getAttribute("href");
+            if (href && href !== "#") {
+              bsOffcanvas.hide();
+            }
+          });
+        } catch (error) {
+          console.warn("Navbar offcanvas unavailable:", error);
+        }
       });
     </script>
     {% block extra_js %}{% endblock extra_js %}
