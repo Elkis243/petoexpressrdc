@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django.contrib.sitemaps',
+    'anymail',
     'core.apps.CoreConfig',
 ]
 
@@ -107,11 +108,7 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# Email (variables d'environnement / .env — aussi sur Railway en prod)
-EMAIL_BACKEND = os.getenv(
-    'EMAIL_BACKEND',
-    'django.core.mail.backends.smtp.EmailBackend',
-)
+# Email (Hostinger SMTP en local ; Brevo API HTTPS en prod / si clé présente)
 EMAIL_HOST = os.getenv('EMAIL_HOST', 'smtp.hostinger.com')
 EMAIL_PORT = int(os.getenv('EMAIL_PORT') or 587)
 EMAIL_USE_TLS = str(os.getenv('EMAIL_USE_TLS', 'True')).strip().lower() in {
@@ -128,15 +125,26 @@ EMAIL_USE_SSL = str(os.getenv('EMAIL_USE_SSL', 'False')).strip().lower() in {
 }
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-# Ne jamais laisser la valeur littérale "EMAIL_HOST_USER" dans .env
 _default_from = os.getenv('DEFAULT_FROM_EMAIL', '').strip()
 if not _default_from or _default_from == 'EMAIL_HOST_USER':
     _default_from = EMAIL_HOST_USER or 'noreply@localhost'
 DEFAULT_FROM_EMAIL = _default_from
 SERVER_EMAIL = DEFAULT_FROM_EMAIL
 CONTACT_EMAIL_TO = os.getenv('CONTACT_EMAIL_TO', DEFAULT_FROM_EMAIL)
-# Évite le hang gunicorn si le SMTP est injoignable (souvent le cas sur Railway)
 EMAIL_TIMEOUT = int(os.getenv('EMAIL_TIMEOUT') or 15)
+
+# Brevo (Sendinblue) — obligatoire sur Railway (SMTP Hostinger = Network unreachable)
+BREVO_API_KEY = os.getenv('BREVO_API_KEY', '').strip()
+if BREVO_API_KEY:
+    EMAIL_BACKEND = 'anymail.backends.brevo.EmailBackend'
+    ANYMAIL = {
+        'BREVO_API_KEY': BREVO_API_KEY,
+    }
+else:
+    EMAIL_BACKEND = os.getenv(
+        'EMAIL_BACKEND',
+        'django.core.mail.backends.smtp.EmailBackend',
+    )
 
 
 

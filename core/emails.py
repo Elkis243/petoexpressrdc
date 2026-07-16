@@ -1,5 +1,5 @@
 """
-Envoi d'e-mails du formulaire de contact (SMTP via settings / .env).
+Envoi d'e-mails du formulaire de contact (Brevo API ou SMTP via settings).
 """
 
 from __future__ import annotations
@@ -13,6 +13,11 @@ from django.template.loader import render_to_string
 from django.utils import timezone
 
 logger = logging.getLogger("core.contact")
+
+try:
+    from anymail.exceptions import AnymailError
+except ImportError:  # pragma: no cover
+    AnymailError = Exception  # type: ignore[misc,assignment]
 
 
 def send_contact_email(cleaned_data: dict) -> bool:
@@ -49,9 +54,9 @@ def send_contact_email(cleaned_data: dict) -> bool:
         )
         message.attach_alternative(html_body, "text/html")
         message.send(fail_silently=False)
-    except (SMTPException, TimeoutError, OSError) as exc:
+    except (SMTPException, AnymailError, TimeoutError, OSError) as exc:
         logger.exception(
-            "Échec SMTP lors de l'envoi du formulaire de contact "
+            "Échec d'envoi du formulaire de contact "
             "(destinataire=%s, erreur=%s).",
             recipient,
             type(exc).__name__,
