@@ -28,13 +28,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'django.contrib.sitemaps',
     'anymail',
     'core.apps.CoreConfig',
 ]
 
-SITE_ID = 1
+# Domaine canonique SEO (sitemap, robots, canonical en production)
+SEO_SITE_URL = os.getenv('SEO_SITE_URL', 'https://www.petoexpressrdc.com').rstrip('/')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

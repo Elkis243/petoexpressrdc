@@ -40,8 +40,8 @@
     {# URL canonique absolue #}
     <link rel="canonical" href="{% block canonical_url %}{{ SEO_CANONICAL_URL }}{% endblock canonical_url %}" />
 
-    {# Sitemap — découverte crawl (robots.txt déjà en place) #}
-    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ SEO_ORIGIN }}{% url 'django.contrib.sitemaps.views.sitemap' %}" />
+    {# Sitemap — fichier statique à la racine #}
+    <link rel="sitemap" type="application/xml" title="Sitemap" href="{{ SEO_SITEMAP_URL }}" />
 
     {# Hreflang — fr actuel ; bloc prêt pour d'autres locales #}
     <link rel="alternate" hreflang="fr" href="{% block hreflang_fr %}{{ SEO_CANONICAL_URL }}{% endblock %}" />
@@ -62,9 +62,9 @@
     />
     <meta property="og:type" content="{% block og_type %}website{% endblock og_type %}" />
     <meta property="og:url" content="{% block og_url %}{{ SEO_CANONICAL_URL }}{% endblock og_url %}" />
-    <meta property="og:image" content="{% block og_image %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}{% endblock og_image %}" />
-    <meta property="og:image:secure_url" content="{% block og_image_secure %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}{% endblock %}" />
-    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image" content="{% block og_image %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.webp' %}{% endblock og_image %}" />
+    <meta property="og:image:secure_url" content="{% block og_image_secure %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.webp' %}{% endblock %}" />
+    <meta property="og:image:type" content="image/webp" />
     {# Dimensions réelles du PNG (idéal OG recommandé : 1200×630) #}
     <meta property="og:image:width" content="{% block og_image_width %}1183{% endblock %}" />
     <meta property="og:image:height" content="{% block og_image_height %}725{% endblock %}" />
@@ -76,7 +76,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{% block twitter_title %}{{ page|default:'Peto Express SARL' }} - Housekeeping & nettoyage industriel en RDC{% endblock twitter_title %}" />
     <meta name="twitter:description" content="{% block twitter_description %}Peto Express SARL, solutions professionnelles de housekeeping et nettoyage industriel en République Démocratique du Congo.{% endblock twitter_description %}" />
-    <meta name="twitter:image" content="{% block twitter_image %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}{% endblock twitter_image %}" />
+    <meta name="twitter:image" content="{% block twitter_image %}{{ SEO_ORIGIN }}{% static 'images/social_network_logo.webp' %}{% endblock twitter_image %}" />
     <meta name="twitter:image:alt" content="{% block twitter_image_alt %}Peto Express SARL - Housekeeping et nettoyage industriel{% endblock %}" />
 
     {# Favicon #}
@@ -90,7 +90,7 @@
 
     <meta name="theme-color" content="#034169" />
     <meta name="msapplication-TileColor" content="#034169" />
-    <meta name="msapplication-TileImage" content="{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}" />
+    <meta name="msapplication-TileImage" content="{{ SEO_ORIGIN }}{% static 'images/social_network_logo.webp' %}" />
     <meta name="application-name" content="Peto Express SARL" />
     <meta name="apple-mobile-web-app-title" content="Peto Express SARL" />
     <meta name="mobile-web-app-capable" content="yes" />
@@ -142,7 +142,7 @@
             "contentUrl": "{{ SEO_ORIGIN }}{% static 'images/logo.png' %}",
             "caption": "Logo Peto Express SARL"
           },
-          "image": "{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}",
+          "image": "{{ SEO_ORIGIN }}{% static 'images/social_network_logo.webp' %}",
           "description": "Entreprise congolaise spécialisée en housekeeping, nettoyage industriel et entretien d'espaces professionnels à Kinshasa et en République Démocratique du Congo.",
           "email": "info@petoexpressrdc.com",
           "telephone": ["+243815009808", "+243972238520"],
@@ -226,7 +226,7 @@
           "inLanguage": "fr-CD",
           "primaryImageOfPage": {
             "@type": "ImageObject",
-            "url": "{{ SEO_ORIGIN }}{% static 'images/social_network_logo.png' %}"
+            "url": "{{ SEO_ORIGIN }}{% static 'images/social_network_logo.webp' %}"
           }
         }
       ]
